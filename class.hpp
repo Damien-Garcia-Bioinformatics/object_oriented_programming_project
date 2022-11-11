@@ -11,15 +11,6 @@
 #include <vector>
 
 
-// --- Data types --- //
-
-// typedef enum radiographyState {done, pending} radiographyState ;
-// typedef enum radiographyType {xRay, ultrasound, MRI} radiographyType ;
-
-enum class radiographyState {done, pending} ;
-enum class radiographyType {xRay, ultrasound, MRI} ; 
-
-
 //----------------------------------------------------------------------------//
 
 // --- Class declaration --- //
@@ -101,9 +92,13 @@ class Snapshot {
 
 
 class Radiography {
+	protected :
+		enum class radiographyState {done, pending} ;
+		enum class radiographyType {xRay, ultrasound, MRI} ;
+
 	private :
-		// radiographyType type ;
-		// radiographyState state ;
+		radiographyType type ;
+		radiographyState state ;
 		int day ;
 		int month ;
 		int year ;
@@ -111,20 +106,22 @@ class Radiography {
 		std::vector<Snapshot> listSnapshot ;
 
 		//Set
-		// void set_type(radiographType) ;
-		// void set_state(radiographyState) ;
+		void set_type(radiographyType) ;
+		void set_state(radiographyState) ;
 		void set_day(int) ;
 		void set_month(int) ;
 		void set_year(int) ;
+		void set_medicalReport(MedicalReport) ;
 		void set_listSnapshot(std::vector<Snapshot>) ;
 
 	public :
 		//Get
-		// radiographyType get_type() ;
-		// radiographyState get_state() ;
+		radiographyType get_type() ;
+		radiographyState get_state() ;
 		int get_day() ;
 		int get_month() ;
 		int get_year() ;
+		MedicalReport get_medicalReport() ;
 		std::vector<Snapshot> get_listSnapshot() ;
 
 		//Constructor
