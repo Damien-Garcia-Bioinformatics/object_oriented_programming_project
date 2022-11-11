@@ -1,0 +1,1 @@
+https://github.com/goblinhack/c-plus-plus-serializer/blob/master/examples/basic_example.cpp
