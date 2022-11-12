@@ -8,9 +8,11 @@ class PetitObjet{
 	int access1;
 	int access2;
 	bool status;
+	string photo_filepath;
+	string cr_filepath;
 	
 	public :
-		void get();
+		void get(int);
 		void set(int);
 };
 
@@ -21,9 +23,9 @@ class GrosObjet{
 		void set(int);
 };
 
-void PetitObjet1::get(){cout << un << endl;}
+void PetitObjet::get(int access){cout << un << endl;}
 
-void PetitObjet1::set(int blipoop){un = blipoop;}
+void PetitObjet::set(int blipoop){un = blipoop;}
 
 void GrosObjet::get(){uno.get(); dos.get(); tres.get();}
 
