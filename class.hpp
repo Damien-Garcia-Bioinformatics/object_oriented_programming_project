@@ -11,40 +11,54 @@
 #include <vector>
 
 
-//----------------------------------------------------------------------------//
+typedef enum usertype {patient, doctor} usertype ;
+
 
 // --- Class declaration --- //
 
-class Patient {
+class User {
 	private :
 		std::string name ;
 		std::string surname ;
-		std::string socialSecurity ;
+		usertype type ;
 
 		void set_name(std::string) ;
 		void set_surname(std::string) ;
-		void set_socials(std::string) ;
+		void set_usertype(usertype) ;
 
 	public :
 		std::string get_name() ;
 		std::string get_surname() ;
+		usertype get_usertype() ;
+
+		User(std::string, std::string, usertype) ;
+} ;
+
+
+class Patient:private User {
+	private :
+		std::string socialSecurity ;
+
+		void set_socials(std::string) ;
+
+	public :
 		std::string get_socials() ;
-	
-		Patient(std::string, std::string, std::string) ; //Constructor
-		~Patient() ; //Destructor
+
+		Patient(std::string) ;
 } ;
 
 
-//----------------------------------------------------------------------------//
+class Doctor:private User {
+	private :
+		std::string id ;
 
-
-class MedicalExamination {
+		void set_id(std::string) ;
 	
-
+	public :
+		std::string get_id() ;
+		
+		Doctor(std::string) ;
 } ;
-
-
-//----------------------------------------------------------------------------//
 
 
 class MedicalReport {
@@ -62,33 +76,26 @@ class MedicalReport {
 
 		//Constructor
 		MedicalReport(std::string, std::string) ;
-		~MedicalReport() ;
 
 		//Other methods
 		bool isValidPassword(std::string) ;
 } ;
 
 
-//----------------------------------------------------------------------------//
-
-
 class Snapshot {
 	private :
-		int id ;
+		size_t id ;
 		std::string path ;
 
 		//Set
-		void set_id(int) ;
+		void set_id(size_t) ;
 		void set_path(std::string) ;
 
 	public :
 		//Get
-		int get_id() ;
+		size_t get_id() ;
 		std::string get_path() ;
 } ;
-
-
-//----------------------------------------------------------------------------//
 
 
 class Radiography {
@@ -129,6 +136,14 @@ class Radiography {
 
 		//Other functions
 		void add_snapshot(Snapshot snap) ;
+		void remove_snapshot(Snapshot snap) ;
+} ;
+
+
+class MedicalExamination {
+	private :
+		MedicalReport report ;
+		Radiography radio ;
 } ;
 
 
