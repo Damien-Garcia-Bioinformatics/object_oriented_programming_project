@@ -1,5 +1,5 @@
 // Project Oriented Programming Project
-// Damien GARCIA
+// Damien GARCIA, Florian Echelard
 // M2BB
 
 
@@ -11,7 +11,11 @@
 #include <vector>
 
 
+// --- Type declaration --- //
+
 typedef enum usertype {patient, doctor} usertype ;
+typedef enum radiographyState {done, pending} radiographyState ;
+typedef enum radiographyType {xRay, ultrasound, MRI} radiographyType ;
 
 
 // --- Class declaration --- //
@@ -20,18 +24,18 @@ class User {
 	private :
 		std::string name ;
 		std::string surname ;
-		usertype type ;
-
-		void set_name(std::string) ;
-		void set_surname(std::string) ;
-		void set_usertype(usertype) ;
+		// usertype type ;
 
 	public :
+		void set_name(std::string) ;
+		void set_surname(std::string) ;
+		// void set_usertype(usertype) ;
+
 		std::string get_name() ;
 		std::string get_surname() ;
-		usertype get_usertype() ;
+		// usertype get_usertype() ;
 
-		User(std::string, std::string, usertype) ;
+		User(std::string, std::string) ;
 } ;
 
 
@@ -39,22 +43,22 @@ class Patient:private User {
 	private :
 		std::string socialSecurity ;
 
-		void set_socials(std::string) ;
-
 	public :
+		void set_socials(std::string) ;
+		
 		std::string get_socials() ;
 
-		Patient(std::string) ;
+		Patient(std::string name, std::string surname, std::string socials) : User(name, surname) ;
 } ;
 
 
 class Doctor:private User {
 	private :
 		std::string id ;
-
-		void set_id(std::string) ;
 	
 	public :
+		void set_id(std::string) ;
+		
 		std::string get_id() ;
 		
 		Doctor(std::string) ;
@@ -66,6 +70,7 @@ class MedicalReport {
 		std::string content ;
 		std::string password ;
 
+	public :
 		//Get
 		std::string get_content() ;
 		std::string get_password() ;
@@ -87,11 +92,11 @@ class Snapshot {
 		size_t id ;
 		std::string path ;
 
+	public :
 		//Set
 		void set_id(size_t) ;
 		void set_path(std::string) ;
 
-	public :
 		//Get
 		size_t get_id() ;
 		std::string get_path() ;
@@ -99,10 +104,6 @@ class Snapshot {
 
 
 class Radiography {
-	protected :
-		enum class radiographyState {done, pending} ;
-		enum class radiographyType {xRay, ultrasound, MRI} ;
-
 	private :
 		radiographyType type ;
 		radiographyState state ;
@@ -112,6 +113,7 @@ class Radiography {
 		MedicalReport medicalReport ;
 		std::vector<Snapshot> listSnapshot ;
 
+	public :
 		//Set
 		void set_type(radiographyType) ;
 		void set_state(radiographyState) ;
@@ -121,7 +123,6 @@ class Radiography {
 		void set_medicalReport(MedicalReport) ;
 		void set_listSnapshot(std::vector<Snapshot>) ;
 
-	public :
 		//Get
 		radiographyType get_type() ;
 		radiographyState get_state() ;
