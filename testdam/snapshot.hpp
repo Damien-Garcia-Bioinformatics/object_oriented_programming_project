@@ -34,6 +34,11 @@ class Snapshot {
             set_id(id) ;
             set_path(path) ;
         }
+        Snapshot() {
+            set_id("") ;
+            set_path("") ;
+        }
+        ~Snapshot() { }
 } ;
 
 

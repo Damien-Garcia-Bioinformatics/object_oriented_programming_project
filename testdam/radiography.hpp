@@ -4,23 +4,24 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include "snapshot.hpp"
+#include "report.hpp"
 
+
+typedef enum radiographyType {xRay, ultrasound, MRI} radiographyType ;
+typedef enum radiographyState {done, pending} radiographyState ;
 
 class Radiography {
-    protected :
-        typedef enum radiographyType {xRay, ultrasound, MRI} radiographyType ;
-        typedef enum radiographyState {done, pending} radiographyState ;
-        struct dateFormat {
-            size_t day ;
-            size_t month ;
-            size_t year ;
-        } ;
-
     private :
         // Attributes :
     	radiographyType type ;
 		radiographyState state ;
-        dateFormat date ;
+        size_t day ;
+        size_t month ;
+        size_t year ;
+        std::vector<Snapshot> snaps ;
+        Report rep ;
 
     public :
         // Set functions :
@@ -31,18 +32,19 @@ class Radiography {
             this->state = state ;
         }
         void set_day(size_t day) {
-            this->date.day = day ;
+            this->day = day ;
         }
         void set_month(size_t month) {
-            this->date.month = month ;
+            this->month = month ;
         }
         void set_year(size_t year) {
-            this->date.year = year ;
+            this->year = year ;
         }
-        void set_date(dateFormat date) {
-            set_day(date.day) ;
-            set_month(date.month) ;
-            set_year(date.year) ;
+        void set_report(Report rep) {
+            this->rep = rep ;
+        }
+        void set_snapshots(std::vector<Snapshot> snaps) {
+            this->snaps = snaps ;
         }
 
         // Get functions :
@@ -53,16 +55,22 @@ class Radiography {
             return this->state ;
         }
         size_t get_day() {
-            return this->date.day ;
+            return this->day ;
         }
         size_t get_month() {
-            return this->date.month ;
+            return this->month ;
         }
         size_t get_year() {
-            return this->date.year ;
+            return this->year ;
         }
-        dateFormat get_date() {
-            return this->date ;
+        Report get_report() {
+            return this->rep ;
+        }
+        std::vector<Snapshot> get_snaps() {
+            return this->snaps ;
+        }
+        Snapshot get_snap(size_t index) {
+            return this->snaps.at(index) ;
         }
 
         // Constructor :
@@ -73,10 +81,19 @@ class Radiography {
             set_month(month) ;
             set_year(year) ;
         }
-        Radiography(radiographyType type, radiographyState state, dateFormat date) {
-            set_type(type) ;
-            set_state(state) ;
-            set_date(date) ;
+
+        // Destructor
+        ~Radiography() { }
+
+        // Other functions :
+        void add_snap(std::string id, std::string path) {
+            this->snaps.push_back(Snapshot(id, path)) ;
+        }
+        void del_snap(std::vector<Snapshot> &snaps, size_t index) {
+            this->snaps.erase(snaps.begin() + index) ;
+        }
+        void add_report(std::string content, std::string password) {
+            this->rep = (Report(content,password)) ;
         }
 } ;
 

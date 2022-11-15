@@ -17,7 +17,7 @@ class Report {
         void set_content(std::string content) {
             this->content = content ;
         }
-        void set_pasword(std::string password) {
+        void set_password(std::string password) {
             this->password = password ;
         }
 
@@ -28,6 +28,19 @@ class Report {
             }
             std::cout << "Wrong password" << std::endl ;
         }
+
+        // Constructor :
+        Report(std::string content, std::string password) {
+            set_content(content) ;
+            set_password(password) ;
+        }
+        Report() {
+            set_content("") ;
+            set_password("") ;
+        }
+
+        // Destructor :
+        ~Report() { }
 } ;
 
 
