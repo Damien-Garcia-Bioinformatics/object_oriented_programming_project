@@ -5,6 +5,7 @@
 #include "radiography.hpp"
 #include "report.hpp"
 #include "snapshot.hpp"
+#include "interface.cpp"
 
 
 int main() {
@@ -24,9 +25,13 @@ int main() {
     r2.add_snap("654813", "path/to/file3.txt") ;
     r2.add_report("This is a report you shoudl take seriously...", "dontLookMyPassword") ;
 
-    
-    std::cout << r1.get_day << std::endl ;
-
+    menu() ;
+    // std::cout << r1.get_day() << std::endl ;
+    // std::cout << r1.get_month() << std::endl ;
+    // std::cout << r1.get_year() << std::endl ;
+    // // std::cout << r1.get_report().get_content("dontLookMyPassword") << std::endl ;
+    // system("clear") ;
+    // std::cout << "menu is clean" << std::endl ;
 
     return 0 ;
 }
