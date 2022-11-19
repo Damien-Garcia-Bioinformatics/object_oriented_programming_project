@@ -1,18 +1,21 @@
 #Begin
 name=Cédric
 surname=Guérineau
-cnomID=
+cnomId=315469
+password=poivron
 #End
 
 #Begin
 name=Lucas
 surname=David
-cnomID=
+cnomId=94876
+password=courgette
 #End
 
 #Begin
 name=Emmanuel
 surname=Charpentier
-cnomID=55487632
+cnomId=315498
+password=tomate
 #End
 

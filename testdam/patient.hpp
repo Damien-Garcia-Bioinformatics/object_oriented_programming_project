@@ -10,22 +10,22 @@
 class Patient : public User {
     private :
         // Attribute :
-        std::string socialSecurityNumber ;
+        std::string ssn ; // Social Security Number
 
     public :
         // Set functions :
-        void set_socials(std::string socials) {
-            this->socialSecurityNumber = socials ;
+        void set_ssn(std::string ssn) {
+            this->ssn = ssn ;
         }
 
         // Get functions ;
-        std::string get_socials() {
-            return this->socialSecurityNumber ;
+        std::string get_ssn() {
+            return this->ssn ;
         }
 
         // Constructor :
-        Patient(std::string name, std::string surname, std::string socials) : User(name, surname) {
-            set_socials(socials) ;
+        Patient(std::string name, std::string surname, std::string ssn, std::string password) : User(name, surname, password) {
+            set_ssn(ssn) ;
         }
 } ;
 

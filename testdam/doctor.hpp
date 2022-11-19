@@ -14,8 +14,8 @@ class Doctor : public User {
 
     public :
         // Set functions :
-        void set_cnomId(std::string id) {
-            this->cnomId = id ;
+        void set_cnomId(std::string cnomId) {
+            this->cnomId = cnomId ;
         }
 
         // Get functions :
@@ -24,8 +24,8 @@ class Doctor : public User {
         }
 
         // Constructor :
-        Doctor(std::string name, std::string surname, std::string id) : User(name, surname) {
-            set_cnomId(id) ;
+        Doctor(std::string name, std::string surname, std::string password, std::string cnomId) : User(name, surname, password) {
+            set_cnomId(cnomId) ;
         }
 } ;
 

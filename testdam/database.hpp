@@ -41,6 +41,12 @@ class DatabaseHandling {
 		std::vector<Doctor> get_listDoctors() {
 			return this->listDoctors ;
 		}
+		Patient get_patient(int index) {
+			return get_listPatients()[index] ;
+		}
+		Doctor get_doctor(int index) {
+			return get_listDoctors()[index] ;
+		}
 
 
 		// --- Patients database handling methods --- //
@@ -50,10 +56,19 @@ class DatabaseHandling {
 			this->listPatients.push_back(p) ;
 		}
 
+		int is_patient(std::string ssn) {
+			for (size_t i=0 ; i<get_listPatients().size() ; i++) {
+				if (this->get_listPatients()[i].get_ssn() == ssn) {
+					return i ;
+				}
+			}
+			return -1 ;
+		}
+
 		// Extracts patients data from database
 		std::vector<Patient> upload_patients_database() {
 			std::vector<Patient> listPatients ;
-			std::string name, surname, socials ;
+			std::string name, surname, ssn, password ;
 
 			std::string path {"data/patients.txt"} ;
 			std::ifstream file ;
@@ -71,10 +86,12 @@ class DatabaseHandling {
 					name = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "surname") {
 					surname = line.substr(line.find('=') +1) ;
-				} else if (line.substr(0, line.find('=')) == "socials") {
-					socials = line.substr(line.find('=') +1) ;
+				} else if (line.substr(0, line.find('=')) == "ssn") {
+					ssn = line.substr(line.find('=') +1) ;
+				} else if (line.substr(0, line.find('=')) == "password") {
+					password = line.substr(line.find('=') +1) ;
 				} else if (line == "#End") {
-					listPatients.push_back(Patient(name, surname, socials)) ;
+					listPatients.push_back(Patient(name, surname, password, ssn)) ;
 				}
 			}
 			file.close() ;
@@ -97,7 +114,8 @@ class DatabaseHandling {
 				file << "#Begin\n" ;
 				file << "name=" << listPatients[i].get_name() << "\n" ;
 				file << "surname=" << listPatients[i].get_surname() << "\n" ;
-				file << "socials=" << listPatients[i].get_socials() << "\n" ;
+				file << "ssn=" << listPatients[i].get_ssn() << "\n" ;
+				file << "password=" << listPatients[i].get_password() << "\n" ;
 				file << "#End\n\n" ;
 			}
 			file.close() ;
@@ -111,10 +129,19 @@ class DatabaseHandling {
 			this->listDoctors.push_back(d) ;
 		}
 
+		int is_doctor(std::string cnomId) {
+			for (size_t i=0 ; i<get_listDoctors().size() ; i++) {
+				if (this->get_listDoctors()[i].get_cnomId() == cnomId) {
+					return i ;
+				}
+			}
+			return -1 ;
+		}
+
 		// Extracts doctors data from database
 		std::vector<Doctor> upload_doctors_database() {
 			std::vector<Doctor> listDoctors ;
-			std::string name, surname, cnomId ;
+			std::string name, surname, cnomId, password ;
 
 			std::string path {"data/doctors.txt"} ;
 			std::ifstream file ;
@@ -134,8 +161,10 @@ class DatabaseHandling {
 					surname = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "cnomId") {
 					cnomId = line.substr(line.find('=') +1) ;
+				} else if (line.substr(0, line.find('=')) == "password") {
+					password = line.substr(line.find('=') +1) ;
 				} else if (line == "#End") {
-					listDoctors.push_back(Doctor(name, surname, cnomId)) ;
+					listDoctors.push_back(Doctor(name, surname, password, cnomId)) ;
 				}
 			}
 			file.close() ;
@@ -159,7 +188,8 @@ class DatabaseHandling {
 				file << "#Begin\n" ;
 				file << "name=" << listDoctors[i].get_name() << "\n" ;
 				file << "surname=" << listDoctors[i].get_surname() << "\n" ;
-				file << "cnomID=" << listDoctors[i].get_cnomId() << "\n" ;
+				file << "cnomId=" << listDoctors[i].get_cnomId() << "\n" ;
+				file << "password=" << listDoctors[i].get_password() << "\n" ;
 				file << "#End\n\n" ;
 			}
 			file.close() ;
