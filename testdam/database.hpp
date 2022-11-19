@@ -14,8 +14,8 @@
 class DatabaseHandling {
 	private :
 		// Attributes :
-		std::vector<Patient*> listPatients ;
-		std::vector<Doctor*> listDoctors ;
+		std::vector<Patient> listPatients ;
+		std::vector<Doctor> listDoctors ;
 
 	public :
 		// Constructor :
@@ -35,10 +35,10 @@ class DatabaseHandling {
 		}
 
 		// Get functions :
-		std::vector<Patient*> get_listPatients() {
+		std::vector<Patient> get_listPatients() {
 			return this->listPatients ;
 		}
-		std::vector<Doctor*> get_listDoctors() {
+		std::vector<Doctor> get_listDoctors() {
 			return this->listDoctors ;
 		}
 
@@ -47,14 +47,12 @@ class DatabaseHandling {
 
 		// Adds a patient to the database
 		void add_patient(Patient p) {
-			Patient *ptr {&p} ;
-			this->listPatients.push_back(ptr) ;
+			this->listPatients.push_back(p) ;
 		}
 
 		// Extracts patients data from database
-		std::vector<Patient*> upload_patients_database() {
-			std::vector<Patient*> listPatients ;
-			Patient *ptr {nullptr} ;
+		std::vector<Patient> upload_patients_database() {
+			std::vector<Patient> listPatients ;
 			std::string name, surname, socials ;
 
 			std::string path {"data/patients.txt"} ;
@@ -68,15 +66,15 @@ class DatabaseHandling {
 			std::string line ;
 			while (getline(file, line)) { 
 				if (line == "#Begin") {
-					ptr = new Patient(name, surname, socials) ;
+					continue ;
 				} else if (line.substr(0, line.find('=')) == "name") {
-					ptr->set_name(line.substr(line.find('=') +1)) ;
+					name = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "surname") {
-					ptr->set_surname(line.substr(line.find('=') +1)) ;
+					surname = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "socials") {
-					ptr->set_socials(line.substr(line.find('=') +1)) ;
+					socials = line.substr(line.find('=') +1) ;
 				} else if (line == "#End") {
-					listPatients.push_back(ptr) ;
+					listPatients.push_back(Patient(name, surname, socials)) ;
 				}
 			}
 			file.close() ;
@@ -86,7 +84,7 @@ class DatabaseHandling {
 
 		// Rewrite new version of patients database
 		void update_patients_database() {
-			std::vector<Patient*> listPatients {get_listPatients()} ;
+			std::vector<Patient> listPatients {get_listPatients()} ;
 			std::string path {"data/patients.txt"} ;
 			std::ofstream file ;
 			file.open(path, std::ios::trunc) ;
@@ -97,10 +95,10 @@ class DatabaseHandling {
 
 			for (size_t i=0 ; i<listPatients.size() ; i++) {
 				file << "#Begin\n" ;
-				file << "name=" << listPatients[i]->get_name() << "\n" ;
-				file << "surname=" << listPatients[i]->get_surname() << "\n" ;
-				file << "socials=" << listPatients[i]->get_socials() << "\n" ;
-				file << "#End\n" ;
+				file << "name=" << listPatients[i].get_name() << "\n" ;
+				file << "surname=" << listPatients[i].get_surname() << "\n" ;
+				file << "socials=" << listPatients[i].get_socials() << "\n" ;
+				file << "#End\n\n" ;
 			}
 			file.close() ;
 		}
@@ -110,15 +108,13 @@ class DatabaseHandling {
 
 		// Adds a doctor to the database
 		void add_doctor(Doctor d) {
-			Doctor *ptr {&d} ;
-			this->listDoctors.push_back(ptr) ;
+			this->listDoctors.push_back(d) ;
 		}
 
 		// Extracts doctors data from database
-		std::vector<Doctor*> upload_doctors_database() {
-			std::vector<Doctor*> listDoctors ;
-			Doctor *ptr {nullptr} ;
-			std::string name, surname, cnomID ;
+		std::vector<Doctor> upload_doctors_database() {
+			std::vector<Doctor> listDoctors ;
+			std::string name, surname, cnomId ;
 
 			std::string path {"data/doctors.txt"} ;
 			std::ifstream file ;
@@ -131,15 +127,15 @@ class DatabaseHandling {
 			std::string line ;
 			while (getline(file, line)) { 
 				if (line == "#Begin") {
-					ptr = new Doctor(name, surname, cnomID) ;
+					continue ;
 				} else if (line.substr(0, line.find('=')) == "name") {
-					ptr->set_name(line.substr(line.find('=') +1)) ;
+					name = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "surname") {
-					ptr->set_surname(line.substr(line.find('=') +1)) ;
+					surname = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "cnomId") {
-					ptr->set_cnomId(line.substr(line.find('=') +1)) ;
+					cnomId = line.substr(line.find('=') +1) ;
 				} else if (line == "#End") {
-					listDoctors.push_back(ptr) ;
+					listDoctors.push_back(Doctor(name, surname, cnomId)) ;
 				}
 			}
 			file.close() ;
@@ -150,7 +146,7 @@ class DatabaseHandling {
 
 		// Rewrite new version of doctors database
 		void update_doctors_database() {
-			std::vector<Doctor*> listDoctors {get_listDoctors()} ;
+			std::vector<Doctor> listDoctors {get_listDoctors()} ;
 			std::string path {"data/doctors.txt"} ;
 			std::ofstream file ;
 			file.open(path, std::ios::trunc) ;
@@ -161,10 +157,10 @@ class DatabaseHandling {
 
 			for (size_t i=0 ; i<listDoctors.size() ; i++) {
 				file << "#Begin\n" ;
-				file << "name=" << listDoctors[i]->get_name() << "\n" ;
-				file << "surname=" << listDoctors[i]->get_surname() << "\n" ;
-				file << "cnomID=" << listDoctors[i]->get_cnomId() << "\n" ;
-				file << "#End\n" ;
+				file << "name=" << listDoctors[i].get_name() << "\n" ;
+				file << "surname=" << listDoctors[i].get_surname() << "\n" ;
+				file << "cnomID=" << listDoctors[i].get_cnomId() << "\n" ;
+				file << "#End\n\n" ;
 			}
 			file.close() ;
 		}

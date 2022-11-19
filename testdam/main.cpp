@@ -1,27 +1,25 @@
 #include <iostream>
-#include "user.hpp"
+
 #include "patient.hpp"
 #include "doctor.hpp"
 #include "radiography.hpp"
-#include "report.hpp"
-#include "snapshot.hpp"
 #include "interface.cpp"
 #include "database.hpp"
 
 int main() {
     DatabaseHandling db ;
 
-    // Some patients
-    Patient p1("Damien", "Garcia", "123456789") ;
-    Patient p2("Florian", "Echelard", "987654321") ;
+    Patient p1("Stephane", "Teletchea", "756123") ;
+    Patient p2("Bernard", "Offmann", "1234533015") ;
+    Doctor d1("Emmanuel", "Charpentier", "55487632") ;
     db.add_patient(p1) ;
     db.add_patient(p2) ;
-
-    // Some doctors
-    Doctor d1("Lucas", "David", "748159263") ;
-    Doctor d2("Cédric", "Guerineau", "326159487") ;
     db.add_doctor(d1) ;
-    db.add_doctor(d2) ;
+
+
+    // Some patients
+    std::cout << db.get_listDoctors()[1].get_name() << std::endl ;
+
 
     // // Some radiographies 
     // Radiography r1(xRay, pending, 3, 2, 2023) ;
