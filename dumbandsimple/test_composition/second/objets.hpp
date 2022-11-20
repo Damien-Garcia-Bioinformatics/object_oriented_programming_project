@@ -38,8 +38,9 @@ class GrosObjet{
 		PetitObjet get_object(int); // pour l'instant l'accès réel se fait sur spe
 		// ca peut ne pas retourner l'objet(donc void) mais le push back direct, ce qui ne nécessitera pas une autre méthode
 		void init_object(); // vector.push_back(info), soit une suite de cin soit file un struct
-		void set(int, PetitObjet); // faire un commutateur (switch/case) pour un petit menu sur ce qui est rempli
-		
+		void set(PetitObjet); // faire un commutateur (switch/case) pour un petit menu sur ce qui est rempli
+		void affiche_liste();
+		PetitObjet ajouter_objet(); // appelle set() après avoir init new et puis push back
 };
 
 struct passwd_user{
@@ -61,8 +62,28 @@ void PetitObjet::set_photo(string photo_path){spe = photo_path}
 void PetitObjet::set_cr(string cr_path){spe = cr_path}
 
 
+void get_access1(int access1_id){}; // boucle sur les objets du vecteur et compare
+void get_access2(int access2_id){}; //same appelle PetitObjet.get_spe() si match
+void init_object(){}; // là j'avoue c'est pas clair ce qu'on fait
 
 
+void set(PetitObjet){
+	bool boule;
+	int inte;
+	string toimemetusais;
+	cin >> inte;
+	PetitObjet.set_spe(inte);
+	cin >> inte;
+	PetitObjet.set_acc1(inte);
+	cin >> inte;
+	PetitObjet.set_acc2(inte);
+	cin >> boule;
+	PetitObjet.set_stat(boule);
+	cin >> toimemetusais;
+	PetitObjet.set_photo(toimemetusais);
+	cin >> toimemetusais;
+	PetitObjet.set_cr(toimemetusais);
+};
 
 
 
