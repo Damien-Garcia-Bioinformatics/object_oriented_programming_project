@@ -15,16 +15,8 @@
 #include "database.hpp"
 
 
-
-class Pages : public DatabaseHandling {
+class ConnectionPage : public DatabaseHandling {
     public :
-        // void header2() {
-        //     system("clear") ;
-        //     std::cout << "   +------------------------------------------------------------------+\n" ;
-        //     std::cout << "   |                      Radiographies Data Base                     |\n" ;
-        //     std::cout << "   +------------------------------------------------------------------+\n\n" ;
-        // }
-
         void header() {
             system("clear") ;
             std::cout << "\n" ;
@@ -38,16 +30,13 @@ class Pages : public DatabaseHandling {
             std::cout << "     ╚══════════════════════════════════════════════════════════════════════╝\n\n" ;
         }
 
-        int instant_selection() {
-            system("stty raw") ;
-            int c {getchar()} ;
-            system("stty cooked") ;
-            // system("clear") ;
-            if(c == '.') {
-                system("stty cooked");
-                exit(0);
-            }
-            return c ;
+        void display_main() {
+            header() ;
+            std::cout << "Connection :\n\n" ;
+            std::cout << "   [1] Sign in\n" ;
+            std::cout << "   [2] Sign up\n" ;
+            std::cout << "   [0] Exit\n\n" ;
+            std::cout << "Choice : " ;
         }
 
         std::string password() {
@@ -60,31 +49,20 @@ class Pages : public DatabaseHandling {
             std::cout << output << "\n" ;
             return pw ;
         }
-} ;
 
-
-class ConnectionPage : public Pages {
-    public :
-        void display_main() {
-            Pages::header() ;
-            std::cout << "Connection :\n\n" ;
-            std::cout << "   [1] Sign in\n" ;
-            std::cout << "   [2] Sign up\n" ;
-            std::cout << "   [3] Exit\n" ;
-        }
 
         bool sign_in() {
             std::string login ;
             std::string password ;
             size_t tries {0} ;
             
-            Pages::header() ;
+            header() ;
             std::cout << "Login is your social security number (patients), or cnomId (doctors)\n\n" ;
             do {
                 std::cout << "   Login : " ;
                 std::cin >> login ;
                 std::cout << "Password : " ;
-                password = Pages::password() ;
+                password = ConnectionPage::password() ;
 
                 int resultDoctor {DatabaseHandling::is_doctor(login)} ;
                 int resultPatient {DatabaseHandling::is_patient(login)} ;
@@ -107,7 +85,7 @@ class ConnectionPage : public Pages {
             size_t tries {0} ;
             std::string name, surname, ssn ;
 
-            Pages::header() ;
+            header() ;
             std::cout << "Account creation\n\n" ;
             std::cout << "                   Name : " ;
             std::cin >> name ;
@@ -129,36 +107,42 @@ class ConnectionPage : public Pages {
                     std::cout << "\nPassword doesn't match.\n" ;
                 } else {
                     DatabaseHandling::add_patient(Patient(name, surname, ssn, password1)) ;
+                    DatabaseHandling::update_patients_database(get_listPatients()) ;
                     return true ;
                 }
             } while (tries < 2) ;
             return false ;
         }
 
-        void menu() {
-            ConnectionPage::display_main() ;
-            int c {Pages::instant_selection()} ;
-            switch (c) {
-                case int('1') :
-                    if (ConnectionPage::sign_in()) {
-                        //Go to main interface
-                    } else {
-                        ConnectionPage::menu() ;
-                    }
-                    break ;
-                case int('2') :
-                    if (ConnectionPage::sign_up()) {
-                        //Go to main interface
-                    } else {
-                        ConnectionPage::menu() ;
-                    }
-                    break ;
-                case int('3') :
-                    break ;
-                default :
-                    break ;
-            }
 
+        void menu() {
+            bool menu {true} ;
+            while (menu) {
+                char c ;
+                ConnectionPage::display_main() ;
+                std::cin >> c ;
+                switch (c) {
+                    case '0' : {
+                        exit(0) ;
+                    }
+                    case '1' : {
+                        if (ConnectionPage::sign_in()) {
+                            
+                        }
+                        break ;
+                    }
+                    case '2' : {
+                        if (ConnectionPage::sign_up()) {
+                            //Go to main interface
+                        }
+                        break ;
+                    }
+                    default : {
+                        break ;
+                    }
+                }
+                std::cout << menu << std::endl ;
+            }
         }
 } ;
 
@@ -168,13 +152,13 @@ class MainPage : public ConnectionPage {
 
     public :
         void display() {
-            Pages::header() ;
+            header() ;
             std::cout << "Welcome [Name] [Surname]\n\n" ;
             std::cout << "Acces to :\n" ;
             std::cout << "   [1] Search tool\n" ;
             std::cout << "   [2] Radiography list\n" ;
             std::cout << "   [3] Account\n" ;
-            std::cout << "   [0] Exit\n ;"
+            std::cout << "   [0] Exit\n" ;
         }
 } ;
 

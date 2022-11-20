@@ -54,6 +54,7 @@ class DatabaseHandling {
 		// Adds a patient to the database
 		void add_patient(Patient p) {
 			this->listPatients.push_back(p) ;
+			update_patients_database(listPatients) ;
 		}
 
 		int is_patient(std::string ssn) {
@@ -100,8 +101,7 @@ class DatabaseHandling {
 		}
 
 		// Rewrite new version of patients database
-		void update_patients_database() {
-			std::vector<Patient> listPatients {get_listPatients()} ;
+		void update_patients_database(std::vector<Patient> listPatients) {
 			std::string path {"data/patients.txt"} ;
 			std::ofstream file ;
 			file.open(path, std::ios::trunc) ;
@@ -174,8 +174,7 @@ class DatabaseHandling {
 
 
 		// Rewrite new version of doctors database
-		void update_doctors_database() {
-			std::vector<Doctor> listDoctors {get_listDoctors()} ;
+		void update_doctors_database(std::vector<Doctor> listDoctors) {
 			std::string path {"data/doctors.txt"} ;
 			std::ofstream file ;
 			file.open(path, std::ios::trunc) ;
