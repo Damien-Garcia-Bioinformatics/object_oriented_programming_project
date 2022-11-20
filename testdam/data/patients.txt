@@ -1,35 +1,35 @@
 #Begin
 name=Damien
 surname=Garcia
-ssn=pomme
-password=123456
+ssn=123456
+password=pomme
 #End
 
 #Begin
 name=Florian
 surname=Echelard
-ssn=pastèque
-password=12345
+ssn=12345
+password=pastèque
 #End
 
 #Begin
 name=Gaetan
 surname=Garcia
-ssn=raisin
-password=489876
+ssn=489876
+password=raisin
 #End
 
 #Begin
 name=Stephane
 surname=Teletchea
-ssn=melon
-password=32786
+ssn=32786
+password=melon
 #End
 
 #Begin
 name=Bernard
 surname=Offmann
-ssn=banane
-password=95487
+ssn=95487
+password=banane
 #End
 

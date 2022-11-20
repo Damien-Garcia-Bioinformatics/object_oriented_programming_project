@@ -15,13 +15,27 @@
 #include "database.hpp"
 
 
+
 class Pages : public DatabaseHandling {
     public :
+        // void header2() {
+        //     system("clear") ;
+        //     std::cout << "   +------------------------------------------------------------------+\n" ;
+        //     std::cout << "   |                      Radiographies Data Base                     |\n" ;
+        //     std::cout << "   +------------------------------------------------------------------+\n\n" ;
+        // }
+
         void header() {
             system("clear") ;
-            std::cout << "   +------------------------------------------------------------------+\n" ;
-            std::cout << "   |                      Radiographies Data Base                     |\n" ;
-            std::cout << "   +------------------------------------------------------------------+\n\n" ;
+            std::cout << "\n" ;
+            std::cout << "      ██████╗  █████╗ ████████╗ █████╗     ██████╗  █████╗ ███████╗███████╗\n" ;
+            std::cout << "      ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██╔══██╗██╔══██╗██╔════╝██╔════╝\n" ;
+            std::cout << "      ██║  ██║███████║   ██║   ███████║    ██████╔╝███████║███████╗█████╗  \n" ;
+            std::cout << "      ██║  ██║██╔══██║   ██║   ██╔══██║    ██╔══██╗██╔══██║╚════██║██╔══╝  \n" ;
+            std::cout << "      ██████╔╝██║  ██║   ██║   ██║  ██║    ██████╔╝██║  ██║███████║███████╗\n" ;
+            std::cout << "      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝\n" ;
+            std::cout << "     ███████████████████████████████████████████████████████████████████████╗\n" ;
+            std::cout << "     ╚══════════════════════════════════════════════════════════════════════╝\n\n" ;
         }
 
         int instant_selection() {
@@ -145,6 +159,22 @@ class ConnectionPage : public Pages {
                     break ;
             }
 
+        }
+} ;
+
+
+class MainPage : public ConnectionPage {
+    private :
+
+    public :
+        void display() {
+            Pages::header() ;
+            std::cout << "Welcome [Name] [Surname]\n\n" ;
+            std::cout << "Acces to :\n" ;
+            std::cout << "   [1] Search tool\n" ;
+            std::cout << "   [2] Radiography list\n" ;
+            std::cout << "   [3] Account\n" ;
+            std::cout << "   [0] Exit\n ;"
         }
 } ;
 
