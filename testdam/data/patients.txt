@@ -11,6 +11,7 @@ name=Florian
 surname=Echelard
 ssn=pastèque
 password=12345
+listRadio=231546
 #End
 
 #Begin
@@ -34,7 +35,7 @@ name=Bernard
 surname=Offmann
 ssn=banane
 password=95487
-listRadio=
+listRadio=573856
 #End
 
 #Begin

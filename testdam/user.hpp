@@ -42,6 +42,12 @@ class User {
             set_surname(surname) ;
             set_password(password) ;
         }
+
+        User() {
+            set_name("[unspecified]") ;
+            set_surname("[unspecified]") ;
+            set_password("[unspecified]") ;
+        }
 } ;
 
 

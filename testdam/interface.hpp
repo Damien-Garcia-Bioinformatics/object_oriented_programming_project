@@ -165,12 +165,10 @@ class ConnectionPage : public DatabaseHandling {
         // --- Patient interface --- //
 
         void display_patient_interface() {
-            // this->p = get_patient(get_patient_by_ssn(id)) ;
             Patient pat {DatabaseHandling::get_patient(get_patient_by_ssn(id))} ;
             header() ;
             bool menu {true} ;
             while (menu) {
-                std::cout << pat.get_listRadiographies().size() ;
                 std::cout << "Welcome " << pat.get_name() << " " << pat.get_surname() << ".\n\n" ;
                 std::cout << "   Options :       [0] Exit       [1] Search by date       [2] Search by id\n\n" ;
                 std::cout << "   Radiographies :\n\n" ;

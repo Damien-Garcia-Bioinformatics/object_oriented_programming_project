@@ -19,8 +19,15 @@ class Patient : public User {
         void set_ssn(std::string ssn) {
             this->ssn = ssn ;
         }
+
         void set_listRadiographies(std::vector<Radiography> listRadiograpies) {
             this->listRadiographies = listRadiographies ;
+        }
+
+        void modify_radiography(Radiography radio, int index) {
+            std::vector<Radiography> newList {get_listRadiographies()} ;
+            newList[index] = radio ;
+            set_listRadiographies(newList) ;
         }
 
         // Get functions ;
@@ -30,6 +37,7 @@ class Patient : public User {
         std::vector<Radiography> get_listRadiographies() {
             return this->listRadiographies ;
         }
+
         int get_radiography_by_id(std::string id) {
             for (int i=0 ; i<listRadiographies.size() ; i++) {
                 if (this->listRadiographies[i].get_id() == id) {
@@ -42,10 +50,19 @@ class Patient : public User {
             return this->listRadiographies[index] ;
         }
 
+        void add_radiography(Radiography radio) {
+            this->listRadiographies.push_back(radio) ;
+        }
+
         // Constructor :
         Patient(std::string name, std::string surname, std::string ssn, std::string password, std::vector<Radiography> listRadiographies) : User(name, surname, password) {
             set_ssn(ssn) ;
             set_listRadiographies(listRadiographies) ;
+        }
+        Patient() : User() {
+            set_ssn("[unspecified]") ;
+            std::vector<Radiography> radio ;
+            set_listRadiographies(radio) ;
         }
 } ;
 

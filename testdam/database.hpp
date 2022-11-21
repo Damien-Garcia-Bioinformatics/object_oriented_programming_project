@@ -23,7 +23,12 @@ class DatabaseHandling {
 
 		DatabaseHandling() {
 			set_listRadiographies() ;
+			// char c;
+			// std::cout << listRadiographies.size() << std::endl ;
 			set_listPatients() ;
+			// std::cout << listPatients.size() << std::endl ;
+			// std::cout << listPatients[0].get_listRadiographies()[0].get_day() << std::endl ;
+			// std::cin >> c ;
 			set_listDoctors() ;
 		}
 
@@ -55,7 +60,7 @@ class DatabaseHandling {
 		// Adds a patient to the database
 		void add_patient(Patient p) {
 			this->listPatients.push_back(p) ;
-			update_patients_database(listPatients) ;
+			update_patients_database(this->listPatients) ;
 		}
 
 		// Check if patient id is in database
@@ -95,27 +100,32 @@ class DatabaseHandling {
 				} else if (line.substr(0, line.find('=')) == "password") {
 					password = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "listRadio") {
+					std::vector<Radiography> listRadio ;
 					std::string section {line.substr(line.find('=') +1)} ;
 					std::string temp ;
 					for (size_t i=0 ; i<section.size() ; i++) {
-						if (section[i] == ' ') {
-							listRadio.push_back(Radiography(temp)) ;
-							temp.clear() ;
-						} else {
+						if (section[i] != ' ') {
 							temp += section[i] ;
+						} else {
+							for (int j=0 ; j<DatabaseHandling::listRadiographies.size() ; i++) {
+								if (DatabaseHandling::listRadiographies[i].get_id() == temp) {
+									listRadio.push_back(DatabaseHandling::listRadiographies[i]) ;
+								}
+							}
+							temp.clear() ;
+						}
+						if (!temp.empty()) {
+							for (int j=0 ; j<DatabaseHandling::listRadiographies.size() ; i++) {
+								if (DatabaseHandling::listRadiographies[i].get_id() == temp) {
+									listRadio.push_back(DatabaseHandling::listRadiographies[i]) ;
+								}
+							}
+							temp.clear() ;
 						}
 					}
-					if (!temp.empty()) {
-						listRadio.push_back(Radiography(temp)) ;
-						temp.clear() ;
-					}
 				} else if (line == "#End") {
-					for (size_t i=0 ; i<listRadio.size() ; i++) {
-						int index {DatabaseHandling::get_radiography_by_id(listRadio[i].get_id())} ;
-						Radiography radio {DatabaseHandling::get_radiography_by_index(index)} ;
-						listRadio[i] = radio ;
-					}
 					listPatients.push_back(Patient(name, surname, password, ssn, listRadio)) ;
+					listRadio.clear() ;
 				}
 			}
 			file.close() ;
