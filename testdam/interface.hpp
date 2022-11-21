@@ -15,7 +15,12 @@
 #include "database.hpp"
 
 
+
 class ConnectionPage : public DatabaseHandling {
+    private :
+        std::string user ;
+        std::string id ;
+
     public :
         void header() {
             system("clear") ;
@@ -51,7 +56,7 @@ class ConnectionPage : public DatabaseHandling {
         }
 
 
-        bool sign_in() {
+        bool sign_in(std::string &id, std::string &user) {
             std::string login ;
             std::string password ;
             size_t tries {0} ;
@@ -72,6 +77,11 @@ class ConnectionPage : public DatabaseHandling {
                     std::cout << "Wrong Login and/or password\n\n" ;
                     std::cout << 2 - tries << " attempt(s) left\n\n" ; 
                 } else {
+                    user = "patient" ;
+                    if (resultDoctor != -1) {
+                        user = "doctor" ;
+                    }
+                    id = login ;
                     return true ;
                 }
 
@@ -115,7 +125,7 @@ class ConnectionPage : public DatabaseHandling {
         }
 
 
-        void menu() {
+        void connection_menu() {
             bool menu {true} ;
             while (menu) {
                 char c ;
@@ -126,39 +136,74 @@ class ConnectionPage : public DatabaseHandling {
                         exit(0) ;
                     }
                     case '1' : {
-                        if (ConnectionPage::sign_in()) {
-                            
+                        if (ConnectionPage::sign_in(id, user)) {
+                            display_interface() ;
                         }
                         break ;
                     }
                     case '2' : {
-                        if (ConnectionPage::sign_up()) {
-                            //Go to main interface
-                        }
+                        ConnectionPage::sign_up() ;
                         break ;
                     }
                     default : {
                         break ;
                     }
                 }
-                std::cout << menu << std::endl ;
             }
         }
-} ;
 
 
-class MainPage : public ConnectionPage {
-    private :
+        // ------------------------------------------------------------------- //
 
-    public :
-        void display() {
+        void display_interface() {
+            std::string name, surname ;
+            if (ConnectionPage::user == "doctor") {
+                int index {get_doctor_by_cnomId(id)} ;
+                name = get_doctor(index).get_name() ;
+                surname = get_doctor(index).get_surname() ;
+            } else {
+                int index {get_patient_by_ssn(id)} ;
+                name = get_patient(index).get_name() ;
+                surname = get_patient(index).get_surname() ;
+            }
+
             header() ;
-            std::cout << "Welcome [Name] [Surname]\n\n" ;
-            std::cout << "Acces to :\n" ;
-            std::cout << "   [1] Search tool\n" ;
-            std::cout << "   [2] Radiography list\n" ;
-            std::cout << "   [3] Account\n" ;
-            std::cout << "   [0] Exit\n" ;
+            bool menu {true} ;
+            while (menu) {
+                std::cout << "Welcome " << name << " " << surname << ".\n\n" ;
+                std::cout << "   Options :       [0] Exit       [1] Search by date       [2] Search by id\n\n" ;
+                std::cout << "   Radiographies :\n\n" ;
+                std::cout << "   Radiography id    | Day     | Month   | Year    | Path\n" ;
+                // Loop to print all radiographies
+
+                std::cout << "\nChoice : " ;
+                char c ;
+                std::cin >> c ;
+                switch (c) {
+                    case '0' : {
+                        menu = false ;
+                        break ;
+                    }
+                    case '1' : {
+                        header() ;
+                        size_t day, month, year ;
+                        std::cout << "  Day : " ; std::cin >> day ;
+                        std::cout << "Month : " ; std::cin >> month ;
+                        std::cout << " Year : " ; std::cin >> year ;
+                        break ;
+                    }
+                    case '2' : {
+                        header() ;
+                        std::string id ;
+                        std::cout << "Radiography id : " ; std::cin >> id ;
+                        break ;
+                    }
+                    default : {
+                        menu = false ;
+                        break ;
+                    }
+                }
+            }
         }
 } ;
 

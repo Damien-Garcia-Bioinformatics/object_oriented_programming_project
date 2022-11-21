@@ -47,6 +47,24 @@ class DatabaseHandling {
 		Doctor get_doctor(int index) {
 			return get_listDoctors()[index] ;
 		}
+		int get_patient_by_ssn(std::string ssn) {
+			std::vector<Patient> list {get_listPatients()} ;
+			for (size_t i=0 ; i<list.size() ; i++) {
+				if (list[i].get_ssn() == ssn) {
+					return i ;
+				}
+			}
+			return -1 ;
+		}
+		int get_doctor_by_cnomId(std::string cnomId) {
+			std::vector<Doctor> list {get_listDoctors()} ;
+			for (size_t i=0 ; i<list.size() ; i++) {
+				if (list[i].get_cnomId() == cnomId) {
+					return i ;
+				}
+			}
+			return -1 ;
+		}
 
 
 		// --- Patients database handling methods --- //

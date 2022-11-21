@@ -15,7 +15,7 @@ int main() {
 
     // Declaration and call of command line interface.
     ConnectionPage cli ; 
-    cli.menu() ;
+    cli.connection_menu() ;
 
     // Updating the database
     // db.update_doctors_database() ;
