@@ -15,6 +15,7 @@ typedef enum radiographyState {done, pending} radiographyState ;
 class Radiography {
     private :
         // Attributes :
+        std::string id ;
     	radiographyType type ;
 		radiographyState state ;
         size_t day ;
@@ -25,6 +26,9 @@ class Radiography {
 
     public :
         // Set functions :
+        void set_id(std::string id) {
+            this->id = id ;
+        }
         void set_type(radiographyType type) {
             this->type = type ;
         }
@@ -48,6 +52,9 @@ class Radiography {
         }
 
         // Get functions :
+        std::string get_id() {
+            return this->id ;
+        }
         radiographyType get_type() {
             return this->type ;
         }
@@ -74,12 +81,26 @@ class Radiography {
         }
 
         // Constructor :
-        Radiography(radiographyType type, radiographyState state, size_t day, size_t month, size_t year) {
+        Radiography(std::string id) {
+            set_id(id) ;
+        }
+        Radiography(std::string id, radiographyType type, radiographyState state, size_t day, size_t month, size_t year) {
+            set_id(id) ;
             set_type(type) ;
             set_state(state) ;
             set_day(day) ;
             set_month(month) ;
             set_year(year) ;
+        }
+        Radiography(std::string id, radiographyType type, radiographyState state, size_t day, size_t month, size_t year, std::vector<Snapshot> snaps, Report rep) {
+            set_id(id) ;
+            set_type(type) ;
+            set_state(state) ;
+            set_day(day) ;
+            set_month(month) ;
+            set_year(year) ;
+            set_snapshots(snaps) ;
+            set_report(rep) ;
         }
 
         // Destructor
@@ -92,8 +113,8 @@ class Radiography {
         void del_snap(std::vector<Snapshot> &snaps, size_t index) {
             this->snaps.erase(snaps.begin() + index) ;
         }
-        void add_report(std::string content, std::string password) {
-            this->rep = (Report(content,password)) ;
+        void add_report(std::string content) {
+            this->rep = Report(content) ;
         }
 } ;
 

@@ -119,7 +119,7 @@ class List_Radiography{
             std::string snapPath ;
             std::string repCnt ;
 			std::string repPwd;
-            std::ifstream file ;
+            std::ifstream file {"radiographies.txt"} ;
 			file.open(path, std::ios::in) ;
 			if (!file.is_open()) {
 				std::cout << "Could not download" << std::endl ;

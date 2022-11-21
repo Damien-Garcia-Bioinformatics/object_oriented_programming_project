@@ -6,12 +6,9 @@
 #include <string>
 #include <cstdlib>
 
-#include "user.hpp"
 #include "patient.hpp"
 #include "doctor.hpp"
 #include "radiography.hpp"
-#include "report.hpp"
-#include "snapshot.hpp"
 #include "database.hpp"
 
 
@@ -22,6 +19,8 @@ class ConnectionPage : public DatabaseHandling {
         std::string id ;
 
     public :
+        // --- Simple prints --- //
+
         void header() {
             system("clear") ;
             std::cout << "\n" ;
@@ -44,6 +43,9 @@ class ConnectionPage : public DatabaseHandling {
             std::cout << "Choice : " ;
         }
 
+
+        // --- Tool functions --- //
+
         std::string password() {
             std::string pw ;
             system("stty -echo") ;
@@ -55,6 +57,8 @@ class ConnectionPage : public DatabaseHandling {
             return pw ;
         }
 
+
+        // --- Connection menus --- //
 
         bool sign_in(std::string &id, std::string &user) {
             std::string login ;
@@ -116,7 +120,8 @@ class ConnectionPage : public DatabaseHandling {
                 if (password1 != password2) {
                     std::cout << "\nPassword doesn't match.\n" ;
                 } else {
-                    DatabaseHandling::add_patient(Patient(name, surname, ssn, password1)) ;
+                    std::vector<Radiography> listRadiographies ;
+                    DatabaseHandling::add_patient(Patient(name, surname, ssn, password1, listRadiographies)) ;
                     DatabaseHandling::update_patients_database(get_listPatients()) ;
                     return true ;
                 }
@@ -137,7 +142,11 @@ class ConnectionPage : public DatabaseHandling {
                     }
                     case '1' : {
                         if (ConnectionPage::sign_in(id, user)) {
-                            display_interface() ;
+                            if (user == "patient") {
+                                display_patient_interface() ;
+                            } else {
+                                //display_doctor_interface() ;
+                            }
                         }
                         break ;
                     }
@@ -153,28 +162,29 @@ class ConnectionPage : public DatabaseHandling {
         }
 
 
-        // ------------------------------------------------------------------- //
+        // --- Patient interface --- //
 
-        void display_interface() {
-            std::string name, surname ;
-            if (ConnectionPage::user == "doctor") {
-                int index {get_doctor_by_cnomId(id)} ;
-                name = get_doctor(index).get_name() ;
-                surname = get_doctor(index).get_surname() ;
-            } else {
-                int index {get_patient_by_ssn(id)} ;
-                name = get_patient(index).get_name() ;
-                surname = get_patient(index).get_surname() ;
-            }
-
+        void display_patient_interface() {
+            // this->p = get_patient(get_patient_by_ssn(id)) ;
+            Patient pat {DatabaseHandling::get_patient(get_patient_by_ssn(id))} ;
             header() ;
             bool menu {true} ;
             while (menu) {
-                std::cout << "Welcome " << name << " " << surname << ".\n\n" ;
+                std::cout << pat.get_listRadiographies().size() ;
+                std::cout << "Welcome " << pat.get_name() << " " << pat.get_surname() << ".\n\n" ;
                 std::cout << "   Options :       [0] Exit       [1] Search by date       [2] Search by id\n\n" ;
                 std::cout << "   Radiographies :\n\n" ;
-                std::cout << "   Radiography id    | Day     | Month   | Year    | Path\n" ;
+                std::cout << "   id        | Type     | State    | Day      | Month    | Year     | Path     \n" ;
                 // Loop to print all radiographies
+                std::vector<Radiography> listRadiographies = pat.get_listRadiographies() ;
+                for (int i=0 ; i<listRadiographies.size() ; i++) {
+                    std::cout << listRadiographies[i].get_id() << "  " ;
+                    std::cout << listRadiographies[i].get_type() << "  " ;
+                    std::cout << listRadiographies[i].get_state() << "  " ;
+                    std::cout << listRadiographies[i].get_day() << "  " ;
+                    std::cout << listRadiographies[i].get_month() << "  " ;
+                    std::cout << listRadiographies[i].get_year() << "  \n" ;
+                }
 
                 std::cout << "\nChoice : " ;
                 char c ;
