@@ -24,23 +24,34 @@ class ConnectionPage : public DatabaseHandling {
         void header() {
             system("clear") ;
             std::cout << "\n" ;
-            std::cout << "      ██████╗  █████╗ ████████╗ █████╗     ██████╗  █████╗ ███████╗███████╗\n" ;
-            std::cout << "      ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██╔══██╗██╔══██╗██╔════╝██╔════╝\n" ;
-            std::cout << "      ██║  ██║███████║   ██║   ███████║    ██████╔╝███████║███████╗█████╗  \n" ;
-            std::cout << "      ██║  ██║██╔══██║   ██║   ██╔══██║    ██╔══██╗██╔══██║╚════██║██╔══╝  \n" ;
-            std::cout << "      ██████╔╝██║  ██║   ██║   ██║  ██║    ██████╔╝██║  ██║███████║███████╗\n" ;
-            std::cout << "      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝\n" ;
-            std::cout << "     ███████████████████████████████████████████████████████████████████████╗\n" ;
-            std::cout << "     ╚══════════════════════════════════════════════════════════════════════╝\n\n" ;
+            std::cout << "        ██████╗  █████╗ ████████╗ █████╗     ██████╗  █████╗ ███████╗███████╗\n" ;
+            std::cout << "        ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██╔══██╗██╔══██╗██╔════╝██╔════╝\n" ;
+            std::cout << "        ██║  ██║███████║   ██║   ███████║    ██████╔╝███████║███████╗█████╗  \n" ;
+            std::cout << "        ██║  ██║██╔══██║   ██║   ██╔══██║    ██╔══██╗██╔══██║╚════██║██╔══╝  \n" ;
+            std::cout << "        ██████╔╝██║  ██║   ██║   ██║  ██║    ██████╔╝██║  ██║███████║███████╗\n" ;
+            std::cout << "        ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝\n" ;
+            std::cout << "       ███████████████████████████████████████████████████████████████████████╗\n" ;
+            std::cout << "       ╚══════════════════════════════════════════════════════════════════════╝\n\n" ;
         }
 
         void display_main() {
             header() ;
-            std::cout << "Connection :\n\n" ;
-            std::cout << "   [1] Sign in\n" ;
-            std::cout << "   [2] Sign up\n" ;
-            std::cout << "   [0] Exit\n\n" ;
-            std::cout << "Choice : " ;
+            std::cout << "   Connection :\n\n" ;
+            std::cout << "      [1] Sign in\n" ;
+            std::cout << "      [2] Sign up\n" ;
+            std::cout << "      [0] Exit\n\n" ;
+            std::cout << "   Choice : " ;
+        }
+
+        std::string add_tabulation(std::string text, int maxSize) {
+            int sizeText {(int)(text.size())} ;
+            int sizeTab {maxSize - sizeText} ;
+            if (sizeTab >= 0) {
+                std::string tab(sizeTab, ' ') ;
+                return tab ;
+            } else {
+                return "" ;
+            }
         }
 
 
@@ -66,11 +77,11 @@ class ConnectionPage : public DatabaseHandling {
             size_t tries {0} ;
             
             header() ;
-            std::cout << "Login is your social security number (patients), or cnomId (doctors)\n\n" ;
+            std::cout << "   Login is your social security number (patients), or cnomId (doctors)\n\n" ;
             do {
-                std::cout << "   Login : " ;
+                std::cout << "      Login : " ;
                 std::cin >> login ;
-                std::cout << "Password : " ;
+                std::cout << "   Password : " ;
                 password = ConnectionPage::password() ;
 
                 int resultDoctor {DatabaseHandling::is_doctor(login)} ;
@@ -78,8 +89,8 @@ class ConnectionPage : public DatabaseHandling {
                 if ((resultDoctor == resultPatient) ||
                     (resultDoctor != -1 && DatabaseHandling::get_doctor(resultDoctor).get_password() != password) ||
                     (resultPatient != -1 && DatabaseHandling::get_patient(resultPatient).get_password() != password)) {
-                    std::cout << "Wrong Login and/or password\n\n" ;
-                    std::cout << 2 - tries << " attempt(s) left\n\n" ; 
+                    std::cout << "   Wrong Login and/or password\n\n" ;
+                    std::cout << "   " << 2 - tries << " attempt(s) left\n\n" ; 
                 } else {
                     user = "patient" ;
                     if (resultDoctor != -1) {
@@ -100,27 +111,27 @@ class ConnectionPage : public DatabaseHandling {
             std::string name, surname, ssn ;
 
             header() ;
-            std::cout << "Account creation\n\n" ;
-            std::cout << "                   Name : " ;
+            std::cout << "   Account creation\n\n" ;
+            std::cout << "                      Name : " ;
             std::cin >> name ;
-            std::cout << "                Surname : " ;
+            std::cout << "                   Surname : " ;
             std::cin >> surname ;
-            std::cout << " Social security number : " ;
+            std::cout << "    Social security number : " ;
             std::cin >> ssn ;
             if (DatabaseHandling::is_patient(ssn) != -1) {
-                std::cout << "This social security number is already linked to an account.\n" ;
+                std::cout << "   This social security number is already linked to an account.\n" ;
                 return false ;
             }
 
             do {
-                std::cout << "               Password : " ;
+                std::cout << "                  Password : " ;
                 std::string password1 {password()} ;
-                std::cout << "                  Again : " ;
+                std::cout << "                     Again : " ;
                 std::string password2 {password()} ;
                 if (password1 != password2) {
-                    std::cout << "\nPassword doesn't match.\n" ;
+                    std::cout << "\n   Password doesn't match.\n" ;
                 } else {
-                    std::vector<Radiography> listRadiographies ;
+                    std::vector<std::string> listRadiographies ;
                     DatabaseHandling::add_patient(Patient(name, surname, ssn, password1, listRadiographies)) ;
                     DatabaseHandling::update_patients_database(get_listPatients()) ;
                     return true ;
@@ -165,26 +176,39 @@ class ConnectionPage : public DatabaseHandling {
         // --- Patient interface --- //
 
         void display_patient_interface() {
-            Patient pat {DatabaseHandling::get_patient(get_patient_by_ssn(id))} ;
             header() ;
+            Patient pat {DatabaseHandling::get_patient(get_patient_by_ssn(id))} ;
             bool menu {true} ;
+
             while (menu) {
-                std::cout << "Welcome " << pat.get_name() << " " << pat.get_surname() << ".\n\n" ;
-                std::cout << "   Options :       [0] Exit       [1] Search by date       [2] Search by id\n\n" ;
+                std::cout << "   Welcome " << pat.get_name() << " " << pat.get_surname() << "!\n\n\n" ;
+                std::cout << "   Options :       [0] Exit       [1] Search by date       [2] Search by id\n\n\n" ;
                 std::cout << "   Radiographies :\n\n" ;
-                std::cout << "   id        | Type     | State    | Day      | Month    | Year     | Path     \n" ;
+                std::cout << "   id           | Type        | State       | Day         | Month       | Year        \n" ;
+                std::cout << "   -----------------------------------------------------------------------------------\n" ;
                 // Loop to print all radiographies
-                std::vector<Radiography> listRadiographies = pat.get_listRadiographies() ;
-                for (int i=0 ; i<listRadiographies.size() ; i++) {
-                    std::cout << listRadiographies[i].get_id() << "  " ;
-                    std::cout << listRadiographies[i].get_type() << "  " ;
-                    std::cout << listRadiographies[i].get_state() << "  " ;
-                    std::cout << listRadiographies[i].get_day() << "  " ;
-                    std::cout << listRadiographies[i].get_month() << "  " ;
-                    std::cout << listRadiographies[i].get_year() << "  \n" ;
+                for (size_t i=0 ; i<pat.get_listRadiographies().size() ; i++) {
+                    Radiography radio {get_radiography(pat.get_listRadiographies()[i])} ;
+                    std::cout << "   " ;
+                    std::cout << radio.get_id() << add_tabulation(radio.get_id(), 13) << "|" ;
+                    if (radio.get_type() == xRay) {
+                        std::cout << "xRay" << add_tabulation("xRay", 13) << "|" ;
+                    } else if (radio.get_type() == MRI) {
+                        std::cout << "MRI" << add_tabulation("MRI", 13) << "|" ;
+                    } else {
+                        std::cout << "ultrasound" << add_tabulation("ultrasound", 13) << "|" ;
+                    }
+                    if (radio.get_state() == done) {
+                        std::cout << "done" << add_tabulation("done", 13) << "|" ;
+                    } else {
+                        std::cout << "pending" << add_tabulation("pending", 13) << "|" ;
+                    }
+                    std::cout << radio.get_day() << add_tabulation(std::to_string(radio.get_day()), 13) << "|" ;
+                    std::cout << radio.get_month() << add_tabulation(std::to_string(radio.get_month()), 13) << "|" ;
+                    std::cout << radio.get_year() << add_tabulation(std::to_string(radio.get_year()), 13) << "\n" ;
                 }
 
-                std::cout << "\nChoice : " ;
+                std::cout << "\n   Choice : " ;
                 char c ;
                 std::cin >> c ;
                 switch (c) {
@@ -195,15 +219,15 @@ class ConnectionPage : public DatabaseHandling {
                     case '1' : {
                         header() ;
                         size_t day, month, year ;
-                        std::cout << "  Day : " ; std::cin >> day ;
-                        std::cout << "Month : " ; std::cin >> month ;
-                        std::cout << " Year : " ; std::cin >> year ;
+                        std::cout << "     Day : " ; std::cin >> day ;
+                        std::cout << "   Month : " ; std::cin >> month ;
+                        std::cout << "    Year : " ; std::cin >> year ;
                         break ;
                     }
                     case '2' : {
                         header() ;
                         std::string id ;
-                        std::cout << "Radiography id : " ; std::cin >> id ;
+                        std::cout << "   Radiography id : " ; std::cin >> id ;
                         break ;
                     }
                     default : {

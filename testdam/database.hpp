@@ -23,12 +23,7 @@ class DatabaseHandling {
 
 		DatabaseHandling() {
 			set_listRadiographies() ;
-			// char c;
-			// std::cout << listRadiographies.size() << std::endl ;
 			set_listPatients() ;
-			// std::cout << listPatients.size() << std::endl ;
-			// std::cout << listPatients[0].get_listRadiographies()[0].get_day() << std::endl ;
-			// std::cin >> c ;
 			set_listDoctors() ;
 		}
 
@@ -77,7 +72,7 @@ class DatabaseHandling {
 		std::vector<Patient> upload_patients_database() {
 			std::vector<Patient> listPatients ;
 			std::string name, surname, ssn, password ;
-			std::vector<Radiography> listRadio ;
+			std::vector<std::string> listRadio ;
 
 			std::string path {"data/patients.txt"} ;
 			std::ifstream file ;
@@ -100,28 +95,19 @@ class DatabaseHandling {
 				} else if (line.substr(0, line.find('=')) == "password") {
 					password = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "listRadio") {
-					std::vector<Radiography> listRadio ;
 					std::string section {line.substr(line.find('=') +1)} ;
 					std::string temp ;
-					for (size_t i=0 ; i<section.size() ; i++) {
-						if (section[i] != ' ') {
-							temp += section[i] ;
+					for (int iter=0; iter<section.size() ; iter++) {
+						if (section[iter] == ' ') {
+							listRadio.push_back(temp) ;
+							temp.clear() ;
 						} else {
-							for (int j=0 ; j<DatabaseHandling::listRadiographies.size() ; i++) {
-								if (DatabaseHandling::listRadiographies[i].get_id() == temp) {
-									listRadio.push_back(DatabaseHandling::listRadiographies[i]) ;
-								}
-							}
-							temp.clear() ;
+							temp += section[iter] ;
 						}
-						if (!temp.empty()) {
-							for (int j=0 ; j<DatabaseHandling::listRadiographies.size() ; i++) {
-								if (DatabaseHandling::listRadiographies[i].get_id() == temp) {
-									listRadio.push_back(DatabaseHandling::listRadiographies[i]) ;
-								}
-							}
-							temp.clear() ;
-						}
+					}
+					if (!temp.empty()) {
+						listRadio.push_back(temp) ;
+						temp.clear() ;
 					}
 				} else if (line == "#End") {
 					listPatients.push_back(Patient(name, surname, password, ssn, listRadio)) ;
@@ -151,7 +137,7 @@ class DatabaseHandling {
 				file << "password=" << listPatients[i].get_password() << "\n" ;
 				file << "listRadio=" ;
 				for (size_t j=0 ; j<listPatients[i].get_listRadiographies().size() ; i++) {
-					file << listPatients[i].get_radiography_by_index(j).get_id() << " " ;
+					file << listPatients[i].get_listRadiographies()[j] << " " ;
 				} file << "\n" ;
 				file << "#End\n\n" ;
 			}
@@ -274,7 +260,8 @@ class DatabaseHandling {
 			return -1 ;
 		}
 
-		Radiography get_radiography_by_index(int index) {
+		Radiography get_radiography(std::string id) {
+			int index {get_radiography_by_id(id)} ;
 			return this->listRadiographies[index] ;
 		}
 
