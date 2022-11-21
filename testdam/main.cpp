@@ -8,10 +8,16 @@
 
 int main() {
     // Connexion to command line interface of database
-    ConnectionPage cli ; 
+    CommandLineInterface cli ; 
     cli.connection_menu() ;
 
-    // system("clear") ;
+    system("clear") ;
+    cli.header() ;
+    std::cout << "   Thanks for using our database. All modifications were successfully saved.\n\n" ;
+    std::cout << "   Created for Object Oriented Programming For Biologists Project.\n\n" ;
+    std::cout << "   Authors :\n" ;
+    std::cout << "      - Damien  GARCIA   (M2BB)\n" ;
+    std::cout << "      - Florian ECHELARD (M2BB)\n\n" ;
 
     return 0 ;
 }

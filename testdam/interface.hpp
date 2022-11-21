@@ -13,7 +13,7 @@
 
 
 
-class ConnectionPage : public DatabaseHandling {
+class CommandLineInterface : public DatabaseHandling {
     private :
         std::string user ;
         std::string id ;
@@ -82,7 +82,7 @@ class ConnectionPage : public DatabaseHandling {
                 std::cout << "      Login : " ;
                 std::cin >> login ;
                 std::cout << "   Password : " ;
-                password = ConnectionPage::password() ;
+                password = CommandLineInterface::password() ;
 
                 int resultDoctor {DatabaseHandling::is_doctor(login)} ;
                 int resultPatient {DatabaseHandling::is_patient(login)} ;
@@ -145,14 +145,15 @@ class ConnectionPage : public DatabaseHandling {
             bool menu {true} ;
             while (menu) {
                 char c ;
-                ConnectionPage::display_main() ;
+                CommandLineInterface::display_main() ;
                 std::cin >> c ;
                 switch (c) {
                     case '0' : {
-                        exit(0) ;
+                        menu = false ; ;
+                        break ;
                     }
                     case '1' : {
-                        if (ConnectionPage::sign_in(id, user)) {
+                        if (CommandLineInterface::sign_in(id, user)) {
                             if (user == "patient") {
                                 display_patient_interface() ;
                             } else {
@@ -162,7 +163,7 @@ class ConnectionPage : public DatabaseHandling {
                         break ;
                     }
                     case '2' : {
-                        ConnectionPage::sign_up() ;
+                        CommandLineInterface::sign_up() ;
                         break ;
                     }
                     default : {
@@ -170,6 +171,11 @@ class ConnectionPage : public DatabaseHandling {
                     }
                 }
             }
+        }
+
+        // --- Doctor interface --- //
+        void display_doctor_interface() {
+            
         }
 
 
@@ -184,7 +190,7 @@ class ConnectionPage : public DatabaseHandling {
                 std::cout << "   Welcome " << pat.get_name() << " " << pat.get_surname() << "!\n\n\n" ;
                 std::cout << "   Options :       [0] Exit       [1] Search by date       [2] Search by id\n\n\n" ;
                 std::cout << "   Radiographies :\n\n" ;
-                std::cout << "   id           | Type        | State       | Day         | Month       | Year        \n" ;
+                std::cout << "   id           |Type         |State        |Day          |Month        |Year         \n" ;
                 std::cout << "   -----------------------------------------------------------------------------------\n" ;
                 // Loop to print all radiographies
                 for (size_t i=0 ; i<pat.get_listRadiographies().size() ; i++) {
