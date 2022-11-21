@@ -55,7 +55,6 @@ class DatabaseHandling {
 		// Adds a patient to the database
 		void add_patient(Patient p) {
 			this->listPatients.push_back(p) ;
-			update_patients_database(this->listPatients) ;
 		}
 
 		// Check if patient id is in database
@@ -110,7 +109,7 @@ class DatabaseHandling {
 						temp.clear() ;
 					}
 				} else if (line == "#End") {
-					listPatients.push_back(Patient(name, surname, password, ssn, listRadio)) ;
+					listPatients.push_back(Patient(name, surname, ssn, password, listRadio)) ;
 					listRadio.clear() ;
 				}
 			}
@@ -120,7 +119,8 @@ class DatabaseHandling {
 		}
 
 		// Rewrite new version of patients database
-		void update_patients_database(std::vector<Patient> listPatients) {
+		void update_patients_database() {
+			std::vector<Patient> patients = this->listPatients ;
 			std::string path {"data/patients.txt"} ;
 			std::ofstream file ;
 			file.open(path, std::ios::trunc) ;
@@ -128,16 +128,18 @@ class DatabaseHandling {
 				std::cout << "Could not update patients.txt file" << std::endl ;
 				exit(1) ;
 			}
-
-			for (size_t i=0 ; i<listPatients.size() ; i++) {
+			std::cout << patients.size() << std::endl ;
+			std::cout << patients[0].get_listRadiographies().size() << std::endl ;
+			char c; std::cin >> c;
+			for (size_t i=0 ; i<patients.size() ; i++) {
 				file << "#Begin\n" ;
-				file << "name=" << listPatients[i].get_name() << "\n" ;
-				file << "surname=" << listPatients[i].get_surname() << "\n" ;
-				file << "ssn=" << listPatients[i].get_ssn() << "\n" ;
-				file << "password=" << listPatients[i].get_password() << "\n" ;
+				file << "name=" << patients[i].get_name() << "\n" ;
+				file << "surname=" << patients[i].get_surname() << "\n" ;
+				file << "ssn=" << patients[i].get_ssn() << "\n" ;
+				file << "password=" << patients[i].get_password() << "\n" ;
 				file << "listRadio=" ;
-				for (size_t j=0 ; j<listPatients[i].get_listRadiographies().size() ; i++) {
-					file << listPatients[i].get_listRadiographies()[j] << " " ;
+				for (size_t j=0 ; j<patients[i].get_listRadiographies().size() ; i++) {
+					file << patients[i].get_listRadiographies()[j] << " " ;
 				} file << "\n" ;
 				file << "#End\n\n" ;
 			}
@@ -188,6 +190,7 @@ class DatabaseHandling {
 		std::vector<Doctor> upload_doctors_database() {
 			std::vector<Doctor> listDoctors ;
 			std::string name, surname, cnomId, password ;
+			std::vector<std::string> listPatients ;
 
 			std::string path {"data/doctors.txt"} ;
 			std::ifstream file ;
@@ -209,9 +212,24 @@ class DatabaseHandling {
 					cnomId = line.substr(line.find('=') +1) ;
 				} else if (line.substr(0, line.find('=')) == "password") {
 					password = line.substr(line.find('=') +1) ;
+				}else if (line.substr(0, line.find('=')) == "listPatients") {
+					std::string section {line.substr(line.find('=') +1)} ;
+					std::string temp ;
+					for (int i=0 ; i<section.size() ; i++) {
+						if (section[i] == ' ') {
+							listPatients.push_back(temp) ;
+							temp.clear() ;
+						} else {
+							temp += section[i] ;
+						}
+					}
+					if (!temp.empty()) {
+						listPatients.push_back(temp) ;
+						temp.clear() ;
+					}
 				} else if (line == "#End") {
-					std::vector<Patient> listPatients ;
 					listDoctors.push_back(Doctor(name, surname, password, cnomId, listPatients)) ;
+					listPatients.clear() ;
 				}
 			}
 			file.close() ;
@@ -221,7 +239,8 @@ class DatabaseHandling {
 
 
 		// Rewrite new version of doctors database
-		void update_doctors_database(std::vector<Doctor> listDoctors) {
+		void update_doctors_database() {
+			std::vector<Doctor> listDoctors = this->listDoctors ;
 			std::string path {"data/doctors.txt"} ;
 			std::ofstream file ;
 			file.open(path, std::ios::trunc) ;
@@ -236,6 +255,10 @@ class DatabaseHandling {
 				file << "surname=" << listDoctors[i].get_surname() << "\n" ;
 				file << "cnomId=" << listDoctors[i].get_cnomId() << "\n" ;
 				file << "password=" << listDoctors[i].get_password() << "\n" ;
+				file << "listPatients=" ;
+				for (int j=0 ; j<listDoctors[i].get_listPatients().size() ; j++) {
+					file << listDoctors[i].get_listPatients()[j] << " " ;
+				}file << "\n" ;
 				file << "#End\n\n" ;
 			}
 			file.close() ;
@@ -359,7 +382,8 @@ class DatabaseHandling {
 		}
 
 		// Rewrite new version of doctors database
-		void update_radiographies_database(std::vector<Radiography> radiographies) {
+		void update_radiographies_database() {
+			std::vector<Radiography> radiographies {this->listRadiographies} ;
 			std::string path {"data/radiographies.txt"} ;
 			std::ofstream file ;
 			file.open(path, std::ios::trunc) ;
