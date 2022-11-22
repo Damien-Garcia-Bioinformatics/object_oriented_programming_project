@@ -1,0 +1,132 @@
+#Begin
+id=231546
+type=xRay
+state=done
+day=19
+month=3
+year=2021
+snapID=00001 15643 12345687 6531 54987 322223 11111
+snapPath=path/to/file/00001 path/to/file/15643 path/to/file/12345687 path/to/file/6531 path/to/file/54987 path/to/file/322223 path/to/file/11111
+rep=Patient is healthy, no sign of tissue damage. 
+#End
+
+#Begin
+id=4567833
+type=MRI
+state=done
+day=23
+month=8
+year=2019
+snapID=00002 35789 456 87 123457 66897 546 3224
+snapPath=path/to/file00002 path/to/file35789 path/to/file456 path/to/file87 path/to/file123457 path/to/file66897 path/to/file543 path/to/file3224
+rep=Exam shows presence of tumoral growth in the prefrontal lobe.
+#End
+
+#Begin
+id=84878
+type=ultrasound
+state=pending
+day=27
+month=2
+year=2023
+snapID=
+snapPath=
+rep=
+#End
+
+#Begin
+id=658733
+type=xRay
+state=done
+day=10
+month=11
+year=2018
+snapID=00006 12347 65887 33 54987 312654 45733 85487
+snapPath=path/to/file00006 path/to/file12347 path/to/file65887 path/to/file33 path/to/file54987 path/to/file312654 path/to/file45733 path/to/file85487
+rep=Cracks on medial facet of tibia. Bone seriously weakened. Urgent need for immobilization.
+#End
+
+#Begin
+id=786553
+type=MRI
+state=pending
+day=1
+month=9
+year=2023
+snapID=
+snapPath=
+rep=
+#End
+
+#Begin
+id=7865
+type=MRI
+state=pending
+day=17
+month=4
+year=2023
+snapID= 
+snapPath= 
+rep=
+#End
+
+#Begin
+id=1515
+type=ultrasound
+state=pending
+day=2
+month=1
+year=2023
+snapID=
+snapPath=
+rep=
+#End
+
+#Begin
+id=8787
+type=xRay
+state=done
+day=5
+month=7
+year=2019
+snapID=35487 65487 654873 322 154555 77777 8976 69 420
+snapPath=path/to/file35487 path/to/file65487 path/to/file654873 path/to/file322 path/to/file154555 path/to/file77777 path/to/file8976 path/to/file69 path/to/file420
+rep=Rupture of satorius muscle near the vastus medialis shown by tibialis anterior displacement.
+#End
+
+#Begin
+id=8989
+type=MRI
+state=done
+day=14
+month=11
+year=2017
+snapID=354577 654787 1 3345 8762 12248 002130
+snapPath=path/to/file354577 path/to/file654787 path/to/file1 path/to/file3345 path/to/file8762 path/to/file002130
+rep=Cancer cell growth at multiple points in thoracic region. Fast metastasis most probably originating from untreated breast cancer.
+#End
+
+#Begin
+id=454545
+type=MRI
+state=done
+day=4
+month=12
+year=2018
+snapID=0515490 21 00021 1342400 4570
+snapPath=path/to/file0515490 path/to/file21 path/to/file00021 path/to/file1342400 path/to/file4570
+rep=Need for second look. No sign of cancer anywhere but blood sample are positive.
+#End
+
+#Begin
+id=986532
+type=ultrasound
+state=pending
+day=6
+month=1
+year=2023
+snapID=
+snapPath=
+rep=
+#End
+
