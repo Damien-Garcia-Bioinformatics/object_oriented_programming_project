@@ -1,49 +1,49 @@
 #Begin
 id=231546
-type=0
-state=0
+type=1
+state=1
 day=19
 month=3
 year=2021
 snapID=00001 
 snapPath=file1 
-rep=report1
+rep=
 #End
 
 #Begin
 id=4567833
 type=1
-state=0
+state=1
 day=23
 month=8
 year=2019
-snapID=00001 00002 
-snapPath=file1 file2 
-rep=report2
+snapID=00002 
+snapPath=file2 
+rep=
 #End
 
 #Begin
 id=84878
-type=2
+type=1
 state=1
 day=27
 month=2
 year=2023
-snapID=00001 00002 00003 00004 00005 
-snapPath=file1 file2 file3 file4 file5 
-rep=report3
+snapID=00003 00004 00005 
+snapPath=file3 file4 file5 
+rep=
 #End
 
 #Begin
 id=658733
-type=0
-state=0
+type=1
+state=1
 day=10
 month=11
 year=2018
-snapID=00001 00002 00003 00004 00005 00006 
-snapPath=file1 file2 file3 file4 file5 file6 
-rep=report4
+snapID=00006 
+snapPath=file6 
+rep=
 #End
 
 #Begin
@@ -53,9 +53,9 @@ state=1
 day=1
 month=9
 year=2023
-snapID=00001 00002 00003 00004 00005 00006 00007 
-snapPath=file1 file2 file3 file4 file5 file6 file7 
-rep=report5
+snapID=00007 
+snapPath=file7 
+rep=
 #End
 
 #Begin
@@ -65,9 +65,9 @@ state=1
 day=17
 month=4
 year=2023
-snapID=00001 00002 00003 00004 00005 00006 00007 00008 
-snapPath=file1 file2 file3 file4 file5 file6 file7 file8 
-rep=report6
+snapID=00008 
+snapPath=file8 
+rep=
 #End
 
 #Begin
@@ -77,8 +77,8 @@ state=1
 day=2
 month=1
 year=2023
-snapID=00001 00002 00003 00004 00005 00006 00007 00008 00009 00010 
-snapPath=file1 file2 file3 file4 file5 file6 file7 file8 file10 file5 
-rep=report7
+snapID=00009 00010 
+snapPath=file10 file4 
+rep=
 #End
 

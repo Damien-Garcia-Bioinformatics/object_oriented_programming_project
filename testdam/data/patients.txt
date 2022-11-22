@@ -23,6 +23,14 @@ listRadio=84878
 #End
 
 #Begin
+name=Stephane
+surname=Teletchea
+ssn=32786
+password=melon
+listRadio=658733 
+#End
+
+#Begin
 name=Bernard
 surname=Offmann
 ssn=95487
@@ -39,42 +47,18 @@ listRadio=786553
 #End
 
 #Begin
-name=Timothee
-surname=Gobert
-ssn=88754693
-password=poireau
-listRadio=7865 
-#End
-
-#Begin
-name=Camilla
-surname=Clenet
-ssn=789786
-password=framboise
-listRadio=1515 
-#End
-
-#Begin
-name=Gilles
-surname=Toumaniantz
-ssn=784951
-password=poire
+name=c
+surname=c
+ssn=c
+password=c
 listRadio=
 #End
 
 #Begin
-name=Mourad
-surname=Oussalah
-ssn=654654
-password=cerise
-listRadio=
-#End
-
-#Begin
-name=Brieuc
-surname=Quemener
-ssn=989898
-password=citrouille
+name=i
+surname=i
+ssn=i
+password=i
 listRadio=
 #End
 

@@ -33,6 +33,13 @@ class Doctor : public User {
         void add_patient(std::string patientId) {
             this->listPatients.push_back(patientId) ;
         }
+        void delete_patient(std::string patientId) {
+            for (size_t i=0 ; i<this->listPatients.size() ; i++) {
+                if (this->listPatients[i] == patientId) {
+                    this->listPatients.erase(this->listPatients.begin() + (i)) ;
+                }
+            }
+        }
 
         // Constructor :
         Doctor(std::string name, std::string surname, std::string password, std::string cnomId, std::vector<std::string> listPatients) : User(name, surname, password) {

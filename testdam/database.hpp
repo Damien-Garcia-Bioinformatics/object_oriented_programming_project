@@ -27,6 +27,11 @@ class DatabaseHandling {
 			set_listDoctors() ;
 		}
 
+		void load_progress() {
+			upload_radiographies_database() ;
+			upload_patients_database() ;
+			upload_doctors_database() ;
+		}
 
 		// --- Common methods --- //
 		void save_progress() {
@@ -38,15 +43,18 @@ class DatabaseHandling {
 			std::cout << "════════════════════" ;
 			update_doctors_database() ;
 			std::cout << "═════════════════════\n\n" ;
-			std::cout << "      Thanks for using our database. All modifications were successfully saved.\n\n" ;
-			std::cout << "      Created for Object Oriented Programming For Biologists Project.\n\n" ;
-			std::cout << "      Authors :\n" ;
-			std::cout << "         - Damien  GARCIA   (M2BB)\n" ;
-			std::cout << "         - Florian ECHELARD (M2BB)\n\n" ;
+			std::cout << "   Thanks for using our database. All modifications were successfully saved.\n\n" ;
+			std::cout << "   Created for Object Oriented Programming For Biologists Project.\n\n" ;
+			std::cout << "   Authors :\n" ;
+			std::cout << "      - Damien  GARCIA   (M2BB)\n" ;
+			std::cout << "      - Florian ECHELARD (M2BB)\n\n" ;
 		}
 
 
+
+		// ------------------------------------------ //
 		// --- Patients database handling methods --- //
+		// ------------------------------------------ //
 
 		void set_listPatients() {
 			this->listPatients = upload_patients_database() ;
@@ -73,6 +81,11 @@ class DatabaseHandling {
 		// Adds a patient to the database
 		void add_patient(Patient p) {
 			this->listPatients.push_back(p) ;
+			update_patients_database() ;
+		}
+
+		void delete_patient(size_t index) {
+			this->listPatients.erase(this->listPatients.begin() + (index)) ;
 			update_patients_database() ;
 		}
 
@@ -163,7 +176,10 @@ class DatabaseHandling {
 		}
 
 
+
+		// ----------------------------------------- //
 		// --- Doctors database handling methods --- //
+		// ----------------------------------------- //
 
 		void set_listDoctors() {
 			this->listDoctors = upload_doctors_database() ;
@@ -205,8 +221,15 @@ class DatabaseHandling {
 		void add_patient_to_listPatients(std::string cnomId, std::string patientId) {
 			size_t index {(size_t)(get_doctor_by_cnomId(cnomId))} ;
 			DatabaseHandling::listDoctors[index].add_patient(patientId) ;
-			update_doctors_database() ;
-			upload_doctors_database() ;
+			DatabaseHandling::update_doctors_database() ;
+			DatabaseHandling::upload_doctors_database() ;
+		}
+
+		void delete_patient_from_listPatients(std::string cnomId, std::string patientID) {
+			size_t index {(size_t)(get_doctor_by_cnomId(cnomId))} ;
+			DatabaseHandling::listDoctors[index].delete_patient(patientID) ;
+			DatabaseHandling::update_doctors_database() ;
+			DatabaseHandling::upload_doctors_database() ;
 		}
 
 		// Extracts doctors data from database
@@ -286,7 +309,11 @@ class DatabaseHandling {
 			file.close() ;
 		}
 
+
+
+		// ----------------------------------------------- //
 		// --- Radiographies database handling methods --- //
+		// ----------------------------------------------- //
 
 		std::vector<Radiography> get_listRadiographies() {
 			return this->listRadiographies ;
@@ -394,6 +421,8 @@ class DatabaseHandling {
 					for (size_t i=0 ; i<snapID.size() ; i++) {
 						snaps.push_back(Snapshot(snapID[i], snapPath[i])) ;
 					}
+					snapID.clear() ;
+					snapPath.clear() ;
 					Report rep(repContent) ;
 					radiographies.push_back(Radiography(id, type, state, day, month, year, snaps, rep)) ;
 				}
@@ -430,6 +459,7 @@ class DatabaseHandling {
 				for (size_t j=0 ; j<radio.get_snaps().size() ; j++) {
 					file << radio.get_snap(j).get_path() << " " ;
 				} file << "\n" ;
+				
 				file << "rep=" << radiographies[i].get_report().get_content() << "\n" ;
 				file << "#End\n\n" ;
 			}
