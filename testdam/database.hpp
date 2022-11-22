@@ -28,6 +28,24 @@ class DatabaseHandling {
 		}
 
 
+		// --- Common methods --- //
+		void save_progress() {
+			std::cout << "      Saving database, please wait... (Save should only take a few seconds)\n\n" ;
+			std::cout << "      0%                              50%                              100%\n" ;
+			update_radiographies_database() ;
+			std::cout << "      ════════════════════════════" ;
+			update_patients_database() ;
+			std::cout << "════════════════════" ;
+			update_doctors_database() ;
+			std::cout << "═════════════════════\n\n" ;
+			std::cout << "      Thanks for using our database. All modifications were successfully saved.\n\n" ;
+			std::cout << "      Created for Object Oriented Programming For Biologists Project.\n\n" ;
+			std::cout << "      Authors :\n" ;
+			std::cout << "         - Damien  GARCIA   (M2BB)\n" ;
+			std::cout << "         - Florian ECHELARD (M2BB)\n\n" ;
+		}
+
+
 		// --- Patients database handling methods --- //
 
 		void set_listPatients() {
@@ -55,6 +73,7 @@ class DatabaseHandling {
 		// Adds a patient to the database
 		void add_patient(Patient p) {
 			this->listPatients.push_back(p) ;
+			update_patients_database() ;
 		}
 
 		// Check if patient id is in database
@@ -128,9 +147,6 @@ class DatabaseHandling {
 				std::cout << "Could not update patients.txt file" << std::endl ;
 				exit(1) ;
 			}
-			std::cout << patients.size() << std::endl ;
-			std::cout << patients[0].get_listRadiographies().size() << std::endl ;
-			char c; std::cin >> c;
 			for (size_t i=0 ; i<patients.size() ; i++) {
 				file << "#Begin\n" ;
 				file << "name=" << patients[i].get_name() << "\n" ;
@@ -138,7 +154,7 @@ class DatabaseHandling {
 				file << "ssn=" << patients[i].get_ssn() << "\n" ;
 				file << "password=" << patients[i].get_password() << "\n" ;
 				file << "listRadio=" ;
-				for (size_t j=0 ; j<patients[i].get_listRadiographies().size() ; i++) {
+				for (size_t j=0 ; j<patients[i].get_listRadiographies().size() ; j++) {
 					file << patients[i].get_listRadiographies()[j] << " " ;
 				} file << "\n" ;
 				file << "#End\n\n" ;
@@ -184,6 +200,13 @@ class DatabaseHandling {
 				}
 			}
 			return -1 ;
+		}
+
+		void add_patient_to_listPatients(std::string cnomId, std::string patientId) {
+			size_t index {(size_t)(get_doctor_by_cnomId(cnomId))} ;
+			DatabaseHandling::listDoctors[index].add_patient(patientId) ;
+			update_doctors_database() ;
+			upload_doctors_database() ;
 		}
 
 		// Extracts doctors data from database
@@ -240,7 +263,7 @@ class DatabaseHandling {
 
 		// Rewrite new version of doctors database
 		void update_doctors_database() {
-			std::vector<Doctor> listDoctors = this->listDoctors ;
+			std::vector<Doctor> listDoctors {this->listDoctors} ;
 			std::string path {"data/doctors.txt"} ;
 			std::ofstream file ;
 			file.open(path, std::ios::trunc) ;
@@ -248,7 +271,6 @@ class DatabaseHandling {
 				std::cout << "Could not update doctors.txt file" << std::endl ;
 				exit(1) ;
 			}
-
 			for (size_t i=0 ; i<listDoctors.size() ; i++) {
 				file << "#Begin\n" ;
 				file << "name=" << listDoctors[i].get_name() << "\n" ;
@@ -391,22 +413,22 @@ class DatabaseHandling {
 				std::cout << "Could not update radiographies.txt file" << std::endl ;
 				exit(1) ;
 			}
-
 			for (size_t i=0 ; i<radiographies.size() ; i++) {
+				Radiography radio {radiographies[i]} ;
 				file << "#Begin\n" ;
-				file << "id=" << radiographies[i].get_id() << "\n" ;
-				file << "type=" << radiographies[i].get_type() << "\n" ;
-				file << "state=" << radiographies[i].get_state() << "\n" ;
-				file << "day=" << radiographies[i].get_day() << "\n" ;
-				file << "month=" << radiographies[i].get_month() << "\n" ;
-				file << "year=" << radiographies[i].get_year() << "\n" ;
+				file << "id=" << radio.get_id() << "\n" ;
+				file << "type=" << radio.get_type() << "\n" ;
+				file << "state=" << radio.get_state() << "\n" ;
+				file << "day=" << radio.get_day() << "\n" ;
+				file << "month=" << radio.get_month() << "\n" ;
+				file << "year=" << radio.get_year() << "\n" ;
 				file << "snapID=" ;
-				for (size_t j=0 ; j<radiographies[i].get_snaps().size() ; j++) {
-					file << radiographies[i].get_snap(j).get_id() << " " ;
+				for (size_t j=0 ; j<radio.get_snaps().size() ; j++) {
+					file << radio.get_snap(j).get_id() << " " ;
 				} file << "\n" ;
 				file << "snapPath=" ;
-				for (size_t j=0 ; j<radiographies[i].get_snaps().size() ; j++) {
-					file << radiographies[i].get_snap(j).get_path() << " " ;
+				for (size_t j=0 ; j<radio.get_snaps().size() ; j++) {
+					file << radio.get_snap(j).get_path() << " " ;
 				} file << "\n" ;
 				file << "rep=" << radiographies[i].get_report().get_content() << "\n" ;
 				file << "#End\n\n" ;

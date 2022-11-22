@@ -30,7 +30,7 @@ class Doctor : public User {
             return this->listPatients ;
         }
 
-        void add_listPatients(std::string patientId) {
+        void add_patient(std::string patientId) {
             this->listPatients.push_back(patientId) ;
         }
 
