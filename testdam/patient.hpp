@@ -33,6 +33,19 @@ class Patient : public User {
             return this->listRadiographies ;
         }
 
+        void add_radiography_to_listRadiographies(std::string radioID) {
+            this->listRadiographies.push_back(radioID) ;
+        }
+
+        void remove_radiography_from_listRadiographies(std::string radioID) {
+            for (size_t i=0 ; i<this->listRadiographies.size() ; i++ ) {
+                if (this->listRadiographies[i] == radioID) {
+                    this->listRadiographies.erase(this->listRadiographies.begin() + i) ;
+                }
+            }
+            
+        }
+
         // Constructor :
         Patient(std::string name, std::string surname, std::string ssn, std::string password, std::vector<std::string> listRadiographies) : User(name, surname, password) {
             set_ssn(ssn) ;

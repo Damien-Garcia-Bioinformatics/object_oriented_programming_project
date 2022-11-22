@@ -327,6 +327,35 @@ class DatabaseHandling {
 			this->listRadiographies = upload_radiographies_database() ;
 		}
 
+		void add_radiography(Radiography radio) {
+			this->listRadiographies.push_back(radio) ;
+			DatabaseHandling::update_radiographies_database() ;
+			DatabaseHandling::upload_radiographies_database() ;
+		}
+
+		void add_radiography_to_patient(std::string patientID, std::string radioID) {
+			this->listPatients[get_patient_by_ssn(patientID)].add_radiography_to_listRadiographies(radioID) ;
+			DatabaseHandling::update_patients_database() ;
+			DatabaseHandling::upload_patients_database() ; 
+		}
+
+		void delete_radiography(std::string radioID) {
+			for (size_t i=0 ; i<this->listRadiographies.size() ; i++) {
+				if (this->listRadiographies[i].get_id() == radioID) {
+					this->listRadiographies.erase(this->listRadiographies.begin() + i) ;
+					DatabaseHandling::update_patients_database() ;
+					DatabaseHandling::upload_patients_database() ;
+				}
+			}
+		}
+
+		void delete_radiography_from_patient(std::string patientID, std::string radioID) {
+			this->listPatients[get_patient_by_ssn(patientID)].remove_radiography_from_listRadiographies(radioID) ;
+			DatabaseHandling::update_patients_database() ;
+			DatabaseHandling::upload_patients_database() ;
+		}
+
+
 		int get_radiography_by_id(std::string id) {
 			for (size_t i=0 ; i<this->listRadiographies.size() ; i++) {
 				if (this->listRadiographies[i].get_id() == id) {
@@ -418,7 +447,7 @@ class DatabaseHandling {
 						snapPath.push_back(temp) ;
 						temp.clear() ;
 					}
-                } else if (line.substr(0, line.find('=')) == "repContent") {
+                } else if (line.substr(0, line.find('=')) == "rep") {
 					repContent = line.substr(line.find('=') +1) ;
 				} else if (line == "#End") {
 					std::vector<Snapshot> snaps ;
@@ -450,8 +479,20 @@ class DatabaseHandling {
 				Radiography radio {radiographies[i]} ;
 				file << "#Begin\n" ;
 				file << "id=" << radio.get_id() << "\n" ;
-				file << "type=" << radio.get_type() << "\n" ;
-				file << "state=" << radio.get_state() << "\n" ;
+				file << "type=" ;
+				if (radio.get_type() == xRay) {
+					file << "xRay\n" ;
+				} else if (radio.get_type() == MRI) {
+					file << "MRI\n" ;
+				} else {
+					file << "ultrasound\n" ;
+				}
+				file << "state=" ;
+				if (radio.get_state() == done) {
+					file << "done\n" ;
+				} else {
+					file << "pending\n" ;
+				}
 				file << "day=" << radio.get_day() << "\n" ;
 				file << "month=" << radio.get_month() << "\n" ;
 				file << "year=" << radio.get_year() << "\n" ;

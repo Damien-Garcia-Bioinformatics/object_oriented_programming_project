@@ -11,7 +11,7 @@ name=Florian
 surname=Echelard
 ssn=12345
 password=pastèque
-listRadio=231546 
+listRadio=231546 454545 986532 
 #End
 
 #Begin

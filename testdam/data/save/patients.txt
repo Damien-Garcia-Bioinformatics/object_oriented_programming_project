@@ -3,7 +3,7 @@ name=Damien
 surname=Garcia
 ssn=123456
 password=pomme
-listRadio=231546 4567833
+listRadio=231546 4567833 
 #End
 
 #Begin
@@ -11,7 +11,7 @@ name=Florian
 surname=Echelard
 ssn=12345
 password=pastèque
-listRadio=231546
+listRadio=231546 454545 986532 
 #End
 
 #Begin
@@ -19,7 +19,7 @@ name=Gaetan
 surname=Garcia
 ssn=489876
 password=raisin
-listRadio=84878
+listRadio=84878 
 #End
 
 #Begin
@@ -27,7 +27,7 @@ name=Stephane
 surname=Teletchea
 ssn=32786
 password=melon
-listRadio=658733
+listRadio=658733 
 #End
 
 #Begin
@@ -35,7 +35,7 @@ name=Bernard
 surname=Offmann
 ssn=95487
 password=pamplemousse
-listRadio=573856
+listRadio=573856 
 #End
 
 #Begin
@@ -43,21 +43,6 @@ name=a
 surname=a
 ssn=a
 password=a
-listRadio=786553
+listRadio=786553 
 #End
 
-#Begin
-name=Timothee
-surname=Gobert
-ssn=88754693
-password=poireau
-listRadio=7865
-#End
-
-#Begin
-name=Camilla
-surname=Clenet
-ssn=789786
-password=framboise
-listRadio=1515
-#End

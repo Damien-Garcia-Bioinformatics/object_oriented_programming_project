@@ -103,6 +103,29 @@ class Radiography {
             set_report(rep) ;
         }
 
+        Radiography(std::string id, std::string type, std::string state, size_t day, size_t month, size_t year) {
+            set_id(id) ;
+            if (type == "xRay") {
+                set_type(xRay) ;
+            } else if (type == "MRI") {
+                set_type(MRI) ;
+            } else {
+                set_type(ultrasound) ;
+            }
+            if (state == "done") {
+                set_state(done) ;
+            } else {
+                set_state(pending) ;
+            }
+            set_day(day) ;
+            set_month(month) ;
+            set_year(year) ;
+            std::vector<Snapshot> snaps ;
+            set_snapshots(snaps) ;
+            Report rep ;
+            set_report(rep) ;
+        }
+
         // Destructor
         ~Radiography() { }
 
@@ -116,6 +139,7 @@ class Radiography {
         void add_report(std::string content) {
             this->rep = Report(content) ;
         }
+
 } ;
 
 
