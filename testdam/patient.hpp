@@ -38,6 +38,11 @@ class Patient : public User {
             set_ssn(ssn) ;
             set_listRadiographies(listRadiographies) ;
         }
+        Patient() : User() {
+            set_ssn("[unspecified") ;
+            std::vector<std::string> listRadio ;
+            set_listRadiographies(listRadio) ;
+        }
 } ;
 
 

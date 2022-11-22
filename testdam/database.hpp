@@ -34,20 +34,25 @@ class DatabaseHandling {
 		}
 
 		// --- Common methods --- //
-		void save_progress() {
-			std::cout << "      Saving database, please wait... (Save should only take a few seconds)\n\n" ;
-			std::cout << "      0%                              50%                              100%\n" ;
+		void save_and_quit() {
+			std::cout << "   ╔═════════════════════════════════════════════════════════════════════════╗\n" ;
+			std::cout << "   ║  Saving database, please wait... (Save should only take a few seconds)  ║\n" ;
+			std::cout << "   ║  0%                              50%                              100%  ║\n" ;
 			update_radiographies_database() ;
-			std::cout << "      ════════════════════════════" ;
+			std::cout << "   ║  ════════════════════════════" ;
 			update_patients_database() ;
 			std::cout << "════════════════════" ;
 			update_doctors_database() ;
-			std::cout << "═════════════════════\n\n" ;
-			std::cout << "   Thanks for using our database. All modifications were successfully saved.\n\n" ;
-			std::cout << "   Created for Object Oriented Programming For Biologists Project.\n\n" ;
-			std::cout << "   Authors :\n" ;
-			std::cout << "      - Damien  GARCIA   (M2BB)\n" ;
-			std::cout << "      - Florian ECHELARD (M2BB)\n\n" ;
+			std::cout << "═════════════════════  ║\n" ;
+			std::cout << "   ║  Thanks for using our database. All modifications were successfully     ║\n" ;
+			std::cout << "   ║  saved.                                                                 ║\n" ;
+			std::cout << "   ╚═════════════════════════════════════════════════════════════════════════╝\n\n" ;
+			std::cout << "   ╔═════════════════════════════════════════════════════════════════════════╗\n" ;
+			std::cout << "   ║  Created for Object Oriented Programming For Biologists Project.        ║\n" ;
+			std::cout << "   ║  Authors :                                                              ║\n" ;
+			std::cout << "   ║     - Damien  GARCIA   (M2BB)                                           ║\n" ;
+			std::cout << "   ║     - Florian ECHELARD (M2BB)                                           ║\n" ;
+			std::cout << "   ╚═════════════════════════════════════════════════════════════════════════╝\n\n" ;
 		}
 
 
@@ -184,7 +189,6 @@ class DatabaseHandling {
 		void set_listDoctors() {
 			this->listDoctors = upload_doctors_database() ;
 		}
-
 
 		std::vector<Doctor> get_listDoctors() {
 			return this->listDoctors ;

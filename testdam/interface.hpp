@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <unistd.h> 
 
 #include "patient.hpp"
 #include "doctor.hpp"
@@ -152,8 +153,8 @@ class CommandLineInterface : public DatabaseHandling {
                 std::cin >> c ;
                 switch (c) {
                     case '0' : {
-                        header() ;
-                        DatabaseHandling::save_progress() ;
+                        CommandLineInterface::header() ;
+                        DatabaseHandling::save_and_quit() ;
                         menu = false ; ;
                         break ;
                     }
@@ -191,48 +192,46 @@ class CommandLineInterface : public DatabaseHandling {
             std::cout << "                  surname : " ; std::cin >> surname ;
             std::cout << "   Social security number : " ; std::cin >> ssn ;
             std::cout << "                 password : " ; password = CommandLineInterface::password() ;
-            DatabaseHandling::add_patient(Patient(name, surname, ssn, password, listRadio)) ;
-            DatabaseHandling::add_patient_to_listPatients(doc.get_cnomId(), ssn) ;
+            if (is_patient(ssn) != -1) {
+                std::cout << "\n /!\\ This patient already exists in database /!\\ \n" ;
+                sleep(2) ;
+                
+            } else {
+                DatabaseHandling::add_patient(Patient(name, surname, ssn, password, listRadio)) ;
+                DatabaseHandling::add_patient_to_listPatients(doc.get_cnomId(), ssn) ;
+            }
         }
 
         void display_delete_patient(Doctor &doc) {
-            bool again {true} ;
-            size_t tries {0} ;
             std::string patientID ;
             header() ;
             std::cout << "   ╔══════════════════════════════════╗\n" ;
             std::cout << "   ║   Delete patient from database   ║\n" ;
             std::cout << "   ╚══════════════════════════════════╝\n\n" ;
-            while (tries < 3 && again) {
-                std::cout << "   Enter patient ID : " ; std::cin >> patientID ;
-                if (DatabaseHandling::get_patient_by_ssn(patientID) == -1) {
-                    std::cout << "   Patient doesn't exist in database.\n" ;
-                    continue ;
-                } else {
-                    again = false ;
-                    Patient p {DatabaseHandling::get_patient(get_patient_by_ssn(patientID))} ;
-                    std::cout << "   Do you really want to delete this patient? (y/n)\n\n" ;
-                    std::cout << "                     Name : " << p.get_name() << "\n" ;
-                    std::cout << "                  Surname : " << p.get_surname() << "\n" ;
-                    std::cout << "   Social Security Number : " << p.get_ssn() << "\n\n" ;
-                    std::cout << "   Selection : " ; char c ; std::cin >> c ;
-                    if (c == 'y' || c == 'Y') {
-                        DatabaseHandling::delete_patient(get_patient_by_ssn(patientID)) ;
-                        DatabaseHandling::delete_patient_from_listPatients(doc.get_cnomId(), patientID) ;
-                    }
+            std::cout << "   Enter patient ID : " ; std::cin >> patientID ;
+            if (DatabaseHandling::get_patient_by_ssn(patientID) == -1) {
+                std::cout << "   Patient doesn't exist in database.\n" ;
+            } else {
+                Patient p {DatabaseHandling::get_patient(get_patient_by_ssn(patientID))} ;
+                std::cout << "   Do you really want to delete this patient? (y/n)\n\n" ;
+                std::cout << "                     Name : " << p.get_name() << "\n" ;
+                std::cout << "                  Surname : " << p.get_surname() << "\n" ;
+                std::cout << "   Social Security Number : " << p.get_ssn() << "\n\n" ;
+                std::cout << "   Selection : " ; char c ; std::cin >> c ;
+                if (c == 'y' || c == 'Y') {
+                    DatabaseHandling::delete_patient(get_patient_by_ssn(patientID)) ;
+                    DatabaseHandling::delete_patient_from_listPatients(doc.get_cnomId(), patientID) ;
                 }
             }
         }
 
+
         void display_doctor_interface() {
-            header() ;
             bool menu {true} ;
-
             while (menu) {
+                header() ;
                 Doctor doc {DatabaseHandling::get_doctor(get_doctor_by_cnomId(id))} ;
-
-                // DatabaseHandling::load_progress() ;
-                std::cout << "   Welcome " << doc.get_name() << " " << doc.get_surname() << "!\n\n\n" ;
+                std::cout << "\n   Welcome " << doc.get_name() << " " << doc.get_surname() << "!\n\n\n" ;
                 std::cout << "      Table of Patients :\n\n" ;
                 std::cout << "   ╔═══════════════════════════════════════════════════════════════════════╗\n" ;
                 std::cout << "   ║id               ║Name             ║Surname          ║Exams            ║\n" ;
@@ -249,10 +248,9 @@ class CommandLineInterface : public DatabaseHandling {
                 std::cout << "   ╚═══════════════════════════════════════════════════════════════════════╝\n\n" ;
                 std::cout << "   Options :\n" ;
                 std::cout << "      [0] Exit\n" ;
-                std::cout << "      [1] Search patient\n" ;
+                std::cout << "      [1] Access patient by id\n" ;
                 std::cout << "      [2] Add patient\n" ;
                 std::cout << "      [3] Delete patient\n" ;
-                std::cout << "      [4] Access patient by id\n\n" ;
                 std::cout << "   Selection : " ;
                 char c ;
                 std::cin >> c ;
@@ -262,10 +260,7 @@ class CommandLineInterface : public DatabaseHandling {
                         break ;
                     }
                     case '1' : {
-                        header() ;
-                        std::cout << "   ╔══════════════════════════╗\n" ;
-                        std::cout << "   ║   Search patient by id   ║\n" ;
-                        std::cout << "   ╚══════════════════════════╝\n\n" ;
+                        display_patient_interface() ;
                         break ;
                     }
                     case '2' : {
@@ -275,9 +270,6 @@ class CommandLineInterface : public DatabaseHandling {
                     case '3' : {
                         display_delete_patient(doc) ;
                         break ;
-                    }
-                    case 4 : {
-                        // Access patient by id
                     }
                     default : {
                         menu = false ;
@@ -291,11 +283,29 @@ class CommandLineInterface : public DatabaseHandling {
         // --- Patient interface --- //
 
         void display_patient_interface() {
-            header() ;
-            Patient pat {DatabaseHandling::get_patient(get_patient_by_ssn(id))} ;
+            Patient pat ;
+            if (user == "patient") {
+                pat = DatabaseHandling::get_patient(get_patient_by_ssn(id)) ;
+            } else {
+                Doctor doc {DatabaseHandling::get_doctor(get_doctor_by_cnomId(id))} ;
+                std::string patientID ;
+                header() ;
+                std::cout << "   ╔══════════════════════════╗\n" ;
+                std::cout << "   ║   Search patient by id   ║\n" ;
+                std::cout << "   ╚══════════════════════════╝\n\n" ;
+                std::cout << "   Enter patient ID : " ; std::cin >> patientID ;
+                if (DatabaseHandling::is_patient(patientID) != -1) {
+                    for (size_t i=0 ; i<doc.get_listPatients().size() ; i++) {
+                        if (doc.get_listPatients()[i] == patientID) {
+                            pat = DatabaseHandling::get_patient(get_patient_by_ssn(patientID)) ;
+                        }
+                    }
+                }
+            }
+            
             bool menu {true} ;
-
             while (menu) {
+                header() ;
                 std::cout << "   Welcome " << pat.get_name() << " " << pat.get_surname() << "!\n\n\n" ;
                 
                 std::cout << "      Table of radiographies :\n\n" ;
@@ -325,44 +335,78 @@ class CommandLineInterface : public DatabaseHandling {
                     std::cout << radio.get_year() << add_tabulation(std::to_string(radio.get_year()), 13) << "║\n" ;
                 }
                 std::cout << "   ╚═══════════════════════════════════════════════════════════════════════════════════╝\n\n" ;
-                std::cout << "   Options :\n" ;
-                std::cout << "      [0] Exit\n" ;
-                std::cout << "      [1] Search by date\n" ;
-                std::cout << "      [2] Access by id\n\n" ;
-                std::cout << "   Selection : " ;
-                char c ;
-                std::cin >> c ;
-                switch (c) {
-                    case '0' : {
-                        menu = false ;
-                        break ;
+                if (this->user == "patient") {
+                    // For patients :
+                    std::cout << "   Options :\n" ;
+                    std::cout << "      [0] Exit\n" ;
+                    std::cout << "      [1] Search by date\n" ;
+                    std::cout << "      [2] Access by id\n\n" ;
+                    std::cout << "   Selection : " ; char c ; std::cin >> c ;
+                    switch (c) {
+                        case '0' : {
+                            menu = false ;
+                            break ;
+                        }
+                        case '1' : {
+                            header() ;
+                            size_t day, month, year ;
+                            std::cout << "   ╔══════════════════════════════════╗\n" ;
+                            std::cout << "   ║   Search radiographies by date   ║\n" ;
+                            std::cout << "   ╚══════════════════════════════════╝\n\n" ;
+                            std::cout << "     Day : " ; std::cin >> day ;
+                            std::cout << "   Month : " ; std::cin >> month ;
+                            std::cout << "    Year : " ; std::cin >> year ;
+                            break ;
+                        }
+                        case '2' : {
+                            header() ;
+                            std::string id ;
+                            std::cout << "   ╔════════════════════════════════╗\n" ;
+                            std::cout << "   ║   Access radiographies by id   ║\n" ;
+                            std::cout << "   ╚════════════════════════════════╝\n\n" ;
+                            std::cout << "   Radiography id : " ; std::cin >> id ;
+                            break ;
+                        }
+                        default : {
+                            break ;
+                        }
                     }
-                    case '1' : {
-                        header() ;
-                        size_t day, month, year ;
-                        std::cout << "   ╔══════════════════════════════════╗\n" ;
-                        std::cout << "   ║   Search radiographies by date   ║\n" ;
-                        std::cout << "   ╚══════════════════════════════════╝\n\n" ;
-                        std::cout << "     Day : " ; std::cin >> day ;
-                        std::cout << "   Month : " ; std::cin >> month ;
-                        std::cout << "    Year : " ; std::cin >> year ;
-                        break ;
-                    }
-                    case '2' : {
-                        header() ;
-                        std::string id ;
-                        std::cout << "   ╔════════════════════════════════╗\n" ;
-                        std::cout << "   ║   Search radiographies by id   ║\n" ;
-                        std::cout << "   ╚════════════════════════════════╝\n\n" ;
-                        std::cout << "   Radiography id : " ; std::cin >> id ;
-                        break ;
-                    }
-                    default : {
-                        menu = false ;
-                        break ;
+                } else {
+                    // For doctors :
+                    std::cout << "   Options :\n" ;
+                    std::cout << "      [0] Exit\n" ;
+                    std::cout << "      [1] Search by date\n" ;
+                    std::cout << "      [2] Access by id\n" ;
+                    std::cout << "      [3] Add radiography\n" ;
+                    std::cout << "      [4] Delete radiography\n" ;
+                    std::cout << "   Selection : " ; char c ; std::cin >> c ;
+                    switch (c) {
+                        case '0' : {
+                            menu = false ;
+                            break ;
+                        }
+                        case '1' :
+                            // search_by_date() ;
+                            break ;
+                        case '2' :
+                            // acces_radiography() ;
+                            break ;
+                        case '3' :
+                            // add_radiography() ;
+                            break ;
+                        case '4' :
+                            // delete_radiography() ;
+                            break ;
+                        default : {
+                            break ;
+                        }
                     }
                 }
             }
+        }
+
+        void display_radiographies_interface() {
+
         }
 } ;
 

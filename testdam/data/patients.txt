@@ -46,19 +46,3 @@ password=a
 listRadio=786553 
 #End
 
-#Begin
-name=c
-surname=c
-ssn=c
-password=c
-listRadio=
-#End
-
-#Begin
-name=i
-surname=i
-ssn=i
-password=i
-listRadio=
-#End
-
