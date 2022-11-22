@@ -11,7 +11,6 @@ class User {
         // Attributes :
         std::string name ;
         std::string surname ;
-        std::string password ;
     
     public :
         // Set functions : 
@@ -21,9 +20,6 @@ class User {
         void set_surname(std::string surname) {
             this->surname = surname ;
         }
-        void set_password(std::string password) {
-            this->password = password ;
-        }
 
         // Get functions :
         std::string get_name() {
@@ -32,21 +28,11 @@ class User {
         std::string get_surname() {
             return this->surname ;
         }
-        std::string get_password() {
-            return this->password ;
-        }
 
         // Constructor :
-        User(std::string name, std::string surname, std::string password) {
+        User(std::string name, std::string surname) {
             set_name(name) ;
             set_surname(surname) ;
-            set_password(password) ;
-        }
-
-        User() {
-            set_name("[unspecified]") ;
-            set_surname("[unspecified]") ;
-            set_password("[unspecified]") ;
         }
 } ;
 
