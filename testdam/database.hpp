@@ -355,6 +355,32 @@ class DatabaseHandling {
 			DatabaseHandling::upload_patients_database() ;
 		}
 
+		void add_snapshot_to_radiography(std::string radioID, Snapshot snap) {
+			int index {get_radiography_by_id(radioID)} ;
+			this->listRadiographies[index].add_snap(snap) ;
+			DatabaseHandling::update_radiographies_database() ;
+			DatabaseHandling::upload_radiographies_database() ;
+		}
+
+		void delete_snapshot_from_radiography(std::string radioID, std::string snapID) {
+			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
+			int snapIndex {this->listRadiographies[radioIndex].get_snap_index(snapID)} ;
+			this->listRadiographies[radioIndex].del_snap(snapIndex) ;
+			DatabaseHandling::update_radiographies_database() ;
+			DatabaseHandling::upload_radiographies_database() ;
+		}
+
+		void change_radiography_state(std::string radioID) {
+			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
+			if (this->listRadiographies[radioIndex].get_state() == done) {
+				this->listRadiographies[radioIndex].set_state(pending) ;
+			} else {
+				this->listRadiographies[radioIndex].set_state(done) ;
+			}
+			DatabaseHandling::update_radiographies_database() ;
+			DatabaseHandling::upload_radiographies_database() ;
+		}
+
 
 		int get_radiography_by_id(std::string id) {
 			for (size_t i=0 ; i<this->listRadiographies.size() ; i++) {

@@ -130,10 +130,19 @@ class Radiography {
         ~Radiography() { }
 
         // Other functions :
-        void add_snap(std::string id, std::string path) {
-            this->snaps.push_back(Snapshot(id, path)) ;
+        int get_snap_index(std::string id) {
+            for (int i=0 ; i<this->get_snaps().size() ; i++) {
+                if (this->get_snaps()[i].get_id() == id) {
+                    return i ;
+                }
+            }
+            return -1 ;
         }
-        void del_snap(std::vector<Snapshot> &snaps, size_t index) {
+
+        void add_snap(Snapshot snap) {
+            this->snaps.push_back(snap) ;
+        }
+        void del_snap(size_t index) {
             this->snaps.erase(snaps.begin() + index) ;
         }
         void add_report(std::string content) {

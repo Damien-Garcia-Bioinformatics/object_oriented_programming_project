@@ -46,3 +46,11 @@ password=a
 listRadio=786553 
 #End
 
+#Begin
+name=Victor
+surname=Dubois
+ssn=956295
+password=poire
+listRadio=9954546 326232 
+#End
+
