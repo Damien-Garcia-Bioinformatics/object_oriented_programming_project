@@ -470,20 +470,23 @@ class DatabaseHandling {
 			file.close() ;
 		}
 
-		std::vector<Radiography> search_by_date(size_t day, size_t month, size_t year, std::vector<Radiography> radiographies) {
+		std::vector<Radiography> search_by_date(size_t day, size_t month, size_t year, std::vector<std::string> radiographies) {
+			std::vector<Radiography> database = this->get_listRadiographies();
 			std::vector<Radiography> result;
-			for (size_t i=0 ; i<radiographies.size() ; i++) {
-				if (radiographies.at(i).get_year() == year){
-					if (radiographies.at(i).get_month() == month){
-						if (radiographies.at(i).get_day() == day) { 
-							result.push_back(radiographies.at(i));
+			for (size_t i=0 ; i<database.size() ; i++) {
+				if (database.at(i).get_year() == year){
+					if (database.at(i).get_month() == month){
+						if (database.at(i).get_day() == day) { 
+							for (size_t i=0 ; i<radiographies.size(); i++) {
+								if (radiographies.at(i) == database.at(i).get_id()) {
+									result.push_back(database.at(i));
+								}
+							}
 						}
 					}
 				}
-			return result ;
 			}
-
-
+			return result ;
 		}
 } ;
 
