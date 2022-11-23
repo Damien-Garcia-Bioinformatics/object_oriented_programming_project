@@ -501,12 +501,26 @@ class CommandLineInterface : public DatabaseHandling {
             }
         }
 
-        void display_add_report() {
-
+        void display_add_report(Radiography radio) {
+            std::string rep ;
+            std::cout << "\n\n" ;
+            std::cout << "   ╔═══════════════════════════╗\n" ;
+            std::cout << "   ║   Add report to database  ║\n" ;
+            std::cout << "   ╚═══════════════════════════╝\n\n" ;
+            std::cout << "   Report content : (Press enter to save)\n" ;
+            std::getline(std::cin, rep) ;
+            DatabaseHandling::add_report_to_radiography(radio.get_id(), rep) ;
         }
 
-        void display_remove_report() {
-
+        void display_delete_report(Radiography radio) {
+            std::cout << "\n\n" ;
+            std::cout << "   ╔════════════════════════════════╗\n" ;
+            std::cout << "   ║   Delete report from database  ║\n" ;
+            std::cout << "   ╚════════════════════════════════╝\n\n" ;
+            std::cout << "   Are you sure you want to delete this report ? (y/n) : " ; char c ; std::cin >> c ;
+            if (c == 'y' || c == 'Y') {
+                DatabaseHandling::delete_report_from_radiography(radio.get_id()) ;
+            }
         }
 
         void display_snapshotReport_interface() {
@@ -587,11 +601,11 @@ class CommandLineInterface : public DatabaseHandling {
                                 break ;
                             }
                             case '3' : {
-                                //add_report() ;
+                                display_add_report(radio) ;
                                 break ;
                             }
                             case '4' : {
-                                //delete_report() ;
+                                display_delete_report(radio) ;
                                 break ;
                             }
                             case '5' : {

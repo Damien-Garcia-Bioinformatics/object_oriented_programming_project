@@ -381,6 +381,20 @@ class DatabaseHandling {
 			DatabaseHandling::upload_radiographies_database() ;
 		}
 
+		void add_report_to_radiography(std::string radioID, std::string rep) {
+			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
+			this->listRadiographies[radioIndex].add_report(Report(rep)) ;
+			DatabaseHandling::update_radiographies_database() ;
+			DatabaseHandling::upload_radiographies_database() ;
+		}
+
+		void delete_report_from_radiography(std::string radioID) {
+			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
+			this->listRadiographies[radioIndex].del_report() ;
+			DatabaseHandling::update_radiographies_database() ;
+			DatabaseHandling::upload_radiographies_database() ;
+		}
+
 
 		int get_radiography_by_id(std::string id) {
 			for (size_t i=0 ; i<this->listRadiographies.size() ; i++) {

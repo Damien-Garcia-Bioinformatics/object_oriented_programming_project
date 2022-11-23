@@ -7,7 +7,7 @@ month=3
 year=2021
 snapID=00001 15643 12345687 6531 54987 322223 11111 
 snapPath=path/to/file/00001 path/to/file/15643 path/to/file/12345687 path/to/file/6531 path/to/file/54987 path/to/file/322223 path/to/file/11111 
-rep=Patient is healthy, no sign of tissue damage. 
+rep=
 #End
 
 #Begin
@@ -151,6 +151,18 @@ month=9
 year=2023
 snapID=
 snapPath=
+rep=
+#End
+
+#Begin
+id=849562
+type=ultrasound
+state=done
+day=5
+month=2
+year=2023
+snapID=5648 7823 
+snapPath=path/to/file/5648 path/to/file/7823 
 rep=
 #End
 

@@ -145,8 +145,11 @@ class Radiography {
         void del_snap(size_t index) {
             this->snaps.erase(snaps.begin() + index) ;
         }
-        void add_report(std::string content) {
-            this->rep = Report(content) ;
+        void add_report(Report rep) {
+            this->rep = rep ;
+        }
+        void del_report() {
+            this->rep = Report("") ;
         }
 
 } ;
