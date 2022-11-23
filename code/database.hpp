@@ -34,6 +34,9 @@ class DatabaseHandling {
 		}
 
 		// --- Common methods --- //
+
+		// Method executed at programs end of execution.
+		// Saves modifications made to the database.
 		void save_and_quit() {
 			std::cout << "   ╔═════════════════════════════════════════════════════════════════════════╗\n" ;
 			std::cout << "   ║  Saving database, please wait... (Save should only take a few seconds)  ║\n" ;
@@ -61,18 +64,24 @@ class DatabaseHandling {
 		// --- Patients database handling methods --- //
 		// ------------------------------------------ //
 
+		// Set function :
 		void set_listPatients() {
 			this->listPatients = upload_patients_database() ;
 		}
 
+		// Get function :
+		
+		// Returns list of patients
 		std::vector<Patient> get_listPatients() {
 			return this->listPatients ;
 		}
 
+		// Returns a patient by position in list.
 		Patient get_patient(int index) {
 			return get_listPatients()[index] ;
 		}
 
+		// Search Patient by ssn and returns its position in list of a patients.
 		int get_patient_by_ssn(std::string ssn) {
 			std::vector<Patient> list {get_listPatients()} ;
 			for (size_t i=0 ; i<list.size() ; i++) {
@@ -83,12 +92,13 @@ class DatabaseHandling {
 			return -1 ;
 		}
 
-		// Adds a patient to the database
+		// Adds a patient to the list and updates the database.
 		void add_patient(Patient p) {
 			this->listPatients.push_back(p) ;
 			update_patients_database() ;
 		}
 
+		// Deletes patient from list and updates the database.
 		void delete_patient(size_t index) {
 			this->listPatients.erase(this->listPatients.begin() + (index)) ;
 			update_patients_database() ;
@@ -104,7 +114,7 @@ class DatabaseHandling {
 			return -1 ;
 		}
 
-		// Extracts patients data from database
+		// Extracts patients data from file "data/patients.txt" (the patients database).
 		std::vector<Patient> upload_patients_database() {
 			std::vector<Patient> listPatients ;
 			std::string name, surname, ssn, password ;
@@ -118,6 +128,7 @@ class DatabaseHandling {
 				exit(1) ;
 			}
 
+			// Reads file line by line and creates the patients objects with extraced informations.
 			std::string line ;
 			while (getline(file, line)) { 
 				if (line == "#Begin") {
@@ -155,7 +166,7 @@ class DatabaseHandling {
 			return listPatients ;
 		}
 
-		// Rewrite new version of patients database
+		// Rewrite the database with list of patients objects.
 		void update_patients_database() {
 			std::vector<Patient> patients = this->listPatients ;
 			std::string path {"data/patients.txt"} ;
@@ -186,18 +197,24 @@ class DatabaseHandling {
 		// --- Doctors database handling methods --- //
 		// ----------------------------------------- //
 
+		// Set function :
 		void set_listDoctors() {
 			this->listDoctors = upload_doctors_database() ;
 		}
 
+		// Get functions :
+
+		// Returns the patient list in vector of object format.
 		std::vector<Doctor> get_listDoctors() {
 			return this->listDoctors ;
 		}
 
+		// Returns a Doctor object at specified position in list of objects.
 		Doctor get_doctor(int index) {
 			return get_listDoctors()[index] ;
 		}
 
+		// Returns position in list of a Doctor object by cnomID.
 		int get_doctor_by_cnomId(std::string cnomId) {
 			std::vector<Doctor> list {get_listDoctors()} ;
 			for (size_t i=0 ; i<list.size() ; i++) {
@@ -213,6 +230,7 @@ class DatabaseHandling {
 			this->listDoctors.push_back(d) ;
 		}
 
+		// Checks if specified cnomID exists in Doctor database.
 		int is_doctor(std::string cnomId) {
 			for (size_t i=0 ; i<get_listDoctors().size() ; i++) {
 				if (this->get_listDoctors()[i].get_cnomId() == cnomId) {
@@ -222,6 +240,7 @@ class DatabaseHandling {
 			return -1 ;
 		}
 
+		// Adds a patient ID to the Doctor specified with cnomID.
 		void add_patient_to_listPatients(std::string cnomId, std::string patientId) {
 			size_t index {(size_t)(get_doctor_by_cnomId(cnomId))} ;
 			DatabaseHandling::listDoctors[index].add_patient(patientId) ;
@@ -229,6 +248,7 @@ class DatabaseHandling {
 			DatabaseHandling::upload_doctors_database() ;
 		}
 
+		// Deletes a patient ID from the Doctor specified with cnomID.
 		void delete_patient_from_listPatients(std::string cnomId, std::string patientID) {
 			size_t index {(size_t)(get_doctor_by_cnomId(cnomId))} ;
 			DatabaseHandling::listDoctors[index].delete_patient(patientID) ;
@@ -236,7 +256,7 @@ class DatabaseHandling {
 			DatabaseHandling::upload_doctors_database() ;
 		}
 
-		// Extracts doctors data from database
+		// Extracts Doctors data from file "data/doctors.txt" (the doctors database).
 		std::vector<Doctor> upload_doctors_database() {
 			std::vector<Doctor> listDoctors ;
 			std::string name, surname, cnomId, password ;
@@ -250,6 +270,7 @@ class DatabaseHandling {
 				exit(1) ;
 			}
 
+			// Reads file line by line and creates the doctors objects with extraced informations.
 			std::string line ;
 			while (getline(file, line)) { 
 				if (line == "#Begin") {
@@ -288,7 +309,7 @@ class DatabaseHandling {
 		}
 
 
-		// Rewrite new version of doctors database
+		// Rewrite the database with list of doctors objects.
 		void update_doctors_database() {
 			std::vector<Doctor> listDoctors {this->listDoctors} ;
 			std::string path {"data/doctors.txt"} ;
@@ -319,26 +340,53 @@ class DatabaseHandling {
 		// --- Radiographies database handling methods --- //
 		// ----------------------------------------------- //
 
+		// Get functions :
+
+		// Returns the list of Radiography objects in database.
 		std::vector<Radiography> get_listRadiographies() {
 			return this->listRadiographies ;
 		}
 
+		// Returns the position in list of a Radiography specified by ID.
+		int get_radiography_by_id(std::string id) {
+			for (size_t i=0 ; i<this->listRadiographies.size() ; i++) {
+				if (this->listRadiographies[i].get_id() == id) {
+					return i ;
+				}
+			}
+			return -1 ;
+		}
+
+		// Returns a radiography by its position in list of Radiographies.
+		Radiography get_radiography(std::string id) {
+			int index {get_radiography_by_id(id)} ;
+			return this->listRadiographies[index] ;
+		}
+
+
+		// Set function :
 		void set_listRadiographies() {
 			this->listRadiographies = upload_radiographies_database() ;
 		}
 
+
+		//Others methods :
+
+		// Adds a radiography in list of radiographies and updates the database in consequence.
 		void add_radiography(Radiography radio) {
 			this->listRadiographies.push_back(radio) ;
 			DatabaseHandling::update_radiographies_database() ;
 			DatabaseHandling::upload_radiographies_database() ;
 		}
 
+		// Adds a radiography id to a patient 
 		void add_radiography_to_patient(std::string patientID, std::string radioID) {
 			this->listPatients[get_patient_by_ssn(patientID)].add_radiography_to_listRadiographies(radioID) ;
 			DatabaseHandling::update_patients_database() ;
 			DatabaseHandling::upload_patients_database() ; 
 		}
 
+		// Removes a radiography, specified by its ID from the list of radiographies in database.
 		void delete_radiography(std::string radioID) {
 			for (size_t i=0 ; i<this->listRadiographies.size() ; i++) {
 				if (this->listRadiographies[i].get_id() == radioID) {
@@ -349,12 +397,14 @@ class DatabaseHandling {
 			}
 		}
 
+		// Removes a radiography, specified by its ID from the patient to whom it's associated and updates the database in consequence.
 		void delete_radiography_from_patient(std::string patientID, std::string radioID) {
 			this->listPatients[get_patient_by_ssn(patientID)].remove_radiography_from_listRadiographies(radioID) ;
 			DatabaseHandling::update_patients_database() ;
 			DatabaseHandling::upload_patients_database() ;
 		}
 
+		// Adds a snapshot to a radiography specified by ID and updates the database in consequence.
 		void add_snapshot_to_radiography(std::string radioID, Snapshot snap) {
 			int index {get_radiography_by_id(radioID)} ;
 			this->listRadiographies[index].add_snap(snap) ;
@@ -362,6 +412,7 @@ class DatabaseHandling {
 			DatabaseHandling::upload_radiographies_database() ;
 		}
 
+		// Deletes a snapshot from a radiography specified by ID and updates the database in consequence.
 		void delete_snapshot_from_radiography(std::string radioID, std::string snapID) {
 			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
 			int snapIndex {this->listRadiographies[radioIndex].get_snap_index(snapID)} ;
@@ -370,6 +421,7 @@ class DatabaseHandling {
 			DatabaseHandling::upload_radiographies_database() ;
 		}
 
+		// Switch the state (done/pending) of a Radiography specified by ID and updates the database.
 		void change_radiography_state(std::string radioID) {
 			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
 			if (this->listRadiographies[radioIndex].get_state() == done) {
@@ -381,6 +433,7 @@ class DatabaseHandling {
 			DatabaseHandling::upload_radiographies_database() ;
 		}
 
+		// Adds/updates a report object to radiography specified by ID and updates the database.
 		void add_report_to_radiography(std::string radioID, std::string rep) {
 			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
 			this->listRadiographies[radioIndex].add_report(Report(rep)) ;
@@ -388,6 +441,7 @@ class DatabaseHandling {
 			DatabaseHandling::upload_radiographies_database() ;
 		}
 
+		// Removes a report from a radiography specified by ID and update the database.
 		void delete_report_from_radiography(std::string radioID) {
 			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
 			this->listRadiographies[radioIndex].del_report() ;
@@ -395,21 +449,7 @@ class DatabaseHandling {
 			DatabaseHandling::upload_radiographies_database() ;
 		}
 
-
-		int get_radiography_by_id(std::string id) {
-			for (size_t i=0 ; i<this->listRadiographies.size() ; i++) {
-				if (this->listRadiographies[i].get_id() == id) {
-					return i ;
-				}
-			}
-			return -1 ;
-		}
-
-		Radiography get_radiography(std::string id) {
-			int index {get_radiography_by_id(id)} ;
-			return this->listRadiographies[index] ;
-		}
-
+		// Performs a search by date in list of radiographies.
 		std::vector<std::string> search_by_date(size_t day, size_t month, size_t year, std::vector<std::string> radiographies) {
 			std::vector<Radiography> database = this->get_listRadiographies();
 			std::vector<std::string> result;
@@ -428,7 +468,7 @@ class DatabaseHandling {
 			return result ;
 		}
 
-		// Extracts radiographies from database
+		// Extracts Radiographies data from file "data/radiographies.txt" (the Radiography database).
 		std::vector<Radiography> upload_radiographies_database() {
             std::vector<Radiography> radiographies ;
 			std::string id ;
@@ -449,6 +489,7 @@ class DatabaseHandling {
 				exit(1) ;
 			}
 
+			// Reads file line by line and creates the radiography objects with extraced informations.
 			std::string line ;
 			while (getline(file, line)) { 
 				if (line == "#Begin") {
@@ -523,7 +564,7 @@ class DatabaseHandling {
 			return radiographies ;
 		}
 
-		// Rewrite new version of doctors database
+		// Rewrite the database with list of radiography objects.
 		void update_radiographies_database() {
 			std::vector<Radiography> radiographies {this->listRadiographies} ;
 			std::string path {"data/radiographies.txt"} ;

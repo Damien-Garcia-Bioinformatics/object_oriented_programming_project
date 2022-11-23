@@ -2,7 +2,6 @@
 #define __SNAPSHOT__
 
 
-#include <iostream>
 #include <string>
 
 
@@ -38,6 +37,8 @@ class Snapshot {
             set_id("") ;
             set_path("") ;
         }
+
+        // Destructor :
         ~Snapshot() { }
 } ;
 

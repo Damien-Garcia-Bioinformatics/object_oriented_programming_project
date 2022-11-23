@@ -2,15 +2,17 @@
 #define __RADIOGRAPHY__
 
 
-#include <iostream>
 #include <string>
 #include <vector>
+
 #include "snapshot.hpp"
 #include "report.hpp"
 
 
+// Type definition :
 typedef enum radiographyType {xRay, ultrasound, MRI} radiographyType ;
 typedef enum radiographyState {done, pending} radiographyState ;
+
 
 class Radiography {
     private :
@@ -84,6 +86,7 @@ class Radiography {
         Radiography(std::string id) {
             set_id(id) ;
         }
+
         Radiography(std::string id, radiographyType type, radiographyState state, size_t day, size_t month, size_t year) {
             set_id(id) ;
             set_type(type) ;
@@ -92,6 +95,7 @@ class Radiography {
             set_month(month) ;
             set_year(year) ;
         }
+
         Radiography(std::string id, radiographyType type, radiographyState state, size_t day, size_t month, size_t year, std::vector<Snapshot> snaps, Report rep) {
             set_id(id) ;
             set_type(type) ;
@@ -130,6 +134,8 @@ class Radiography {
         ~Radiography() { }
 
         // Other functions :
+
+        // Returns the index of a specific snapshot in the list of spnapshots.
         int get_snap_index(std::string id) {
             for (int i=0 ; i<this->get_snaps().size() ; i++) {
                 if (this->get_snaps()[i].get_id() == id) {
@@ -139,19 +145,25 @@ class Radiography {
             return -1 ;
         }
 
+        // Adds a snap in list.
         void add_snap(Snapshot snap) {
             this->snaps.push_back(snap) ;
         }
+
+        // Removes a snap by its position in list of snapshots.
         void del_snap(size_t index) {
             this->snaps.erase(snaps.begin() + index) ;
         }
+
+        // Adds or replaces the report attribute.
         void add_report(Report rep) {
             this->rep = rep ;
         }
+
+        // Deletes the report attribute value.
         void del_report() {
             this->rep = Report("") ;
         }
-
 } ;
 
 

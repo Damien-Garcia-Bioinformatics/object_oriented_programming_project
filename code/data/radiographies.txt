@@ -5,9 +5,9 @@ state=done
 day=19
 month=3
 year=2021
-snapID=00001 15643 12345687 6531 54987 322223 11111 
-snapPath=path/to/file/00001 path/to/file/15643 path/to/file/12345687 path/to/file/6531 path/to/file/54987 path/to/file/322223 path/to/file/11111 
-rep=Patient is healthy, no sign of any tissue damage.
+snapID=00001 15643 12345687 6531 54987 322223 232323 
+snapPath=path/to/file/00001 path/to/file/15643 path/to/file/12345687 path/to/file/6531 path/to/file/54987 path/to/file/322223 path/to/file/232323 
+rep=Patient is healthy, no sign of tissue damage visible on xRay.
 #End
 
 #Begin
