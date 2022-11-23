@@ -6,6 +6,7 @@
 #include <string>
 #include <cstdlib>
 #include <unistd.h> 
+#include <stdio.h>
 
 #include "patient.hpp"
 #include "doctor.hpp"
@@ -502,13 +503,17 @@ class CommandLineInterface : public DatabaseHandling {
         }
 
         void display_add_report(Radiography radio) {
+            int c {getchar()} ;
             std::string rep ;
             std::cout << "\n\n" ;
             std::cout << "   ╔═══════════════════════════╗\n" ;
             std::cout << "   ║   Add report to database  ║\n" ;
             std::cout << "   ╚═══════════════════════════╝\n\n" ;
             std::cout << "   Report content : (Press enter to save)\n" ;
-            std::getline(std::cin, rep) ;
+            do {
+                c = getchar() ;
+                rep += char(c) ;
+            } while (c != '\n') ;
             DatabaseHandling::add_report_to_radiography(radio.get_id(), rep) ;
         }
 
