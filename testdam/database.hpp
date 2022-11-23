@@ -410,6 +410,24 @@ class DatabaseHandling {
 			return this->listRadiographies[index] ;
 		}
 
+		std::vector<std::string> search_by_date(size_t day, size_t month, size_t year, std::vector<std::string> radiographies) {
+			std::vector<Radiography> database = this->get_listRadiographies();
+			std::vector<std::string> result;
+			for (size_t i=0 ; i<database.size() ; i++) {
+				if (database[i].get_year()  == year  &&
+					database[i].get_month() == month &&
+					database[i].get_day()   == day
+					) {
+					for (size_t i=0 ; i<radiographies.size(); i++) {
+						if (radiographies[i] == database[i].get_id()) {
+							result.push_back(database[i].get_id());
+						}
+					}
+				}
+			}
+			return result ;
+		}
+
 		// Extracts radiographies from database
 		std::vector<Radiography> upload_radiographies_database() {
             std::vector<Radiography> radiographies ;

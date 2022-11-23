@@ -292,6 +292,16 @@ class CommandLineInterface : public DatabaseHandling {
         // --- Radiographies interface --- //
         // ------------------------------- //
 
+        void display_search_by_date(size_t &day, size_t &month, size_t &year) {
+            std::cout << "\n\n" ;
+            std::cout << "   ╔════════════════════════════════╗\n" ;
+            std::cout << "   ║   Search radiography by date   ║\n" ;
+            std::cout << "   ╚════════════════════════════════╝\n\n" ;
+            std::cout << "     Day : " ; std::cin >> day ;
+            std::cout << "   Month : " ; std::cin >> month ;
+            std::cout << "    Year : " ; std::cin >> year ;
+        }
+
         void display_add_radiography(std::string patientID) {
             std::cout << "\n\n" ;
             std::cout << "   ╔═════════════════════════════════╗\n" ;
@@ -333,6 +343,10 @@ class CommandLineInterface : public DatabaseHandling {
 
 
         void display_radiographies_interface() {
+            //searchByDate data :
+            bool dateSearch {false} ;
+            size_t day, month, year ;
+            
             bool patient ;
             bool access {false} ;
             std::string patientID ;
@@ -341,7 +355,6 @@ class CommandLineInterface : public DatabaseHandling {
                 patient = true ;
                 access = true ;
             } else {
-
                 Doctor doc {DatabaseHandling::get_doctor(get_doctor_by_cnomId(id))} ;
                 std::cout << "\n\n" ;
                 std::cout << "   ╔══════════════════════════╗\n" ;
@@ -382,8 +395,14 @@ class CommandLineInterface : public DatabaseHandling {
                 std::cout << "   ╚═══════════════════════════════════════════════════════════════════════════════════╝\n" ;
                 std::cout << "   ╔═══════════════════════════════════════════════════════════════════════════════════╗\n" ;
                 // Loop to print all radiographies
-                for (size_t i=0 ; i<pat.get_listRadiographies().size() ; i++) {
-                    Radiography radio {get_radiography(pat.get_listRadiographies()[i])} ;
+                std::vector<std::string> radios ;
+                if (!dateSearch) {
+                    radios = pat.get_listRadiographies() ;
+                } else {
+                    radios = search_by_date(day, month, year, pat.get_listRadiographies()) ;
+                } 
+                for (size_t i=0 ; i<radios.size() ; i++) {
+                    Radiography radio {get_radiography(radios[i])} ;
                     std::cout << "   ║" ;
                     std::cout << radio.get_id() << add_tabulation(radio.get_id(), 13) << "║" ;
                     if (radio.get_type() == xRay) {
@@ -402,6 +421,7 @@ class CommandLineInterface : public DatabaseHandling {
                     std::cout << radio.get_month() << add_tabulation(std::to_string(radio.get_month()), 13) << "║" ;
                     std::cout << radio.get_year() << add_tabulation(std::to_string(radio.get_year()), 13) << "║\n" ;
                 }
+                dateSearch = false ;
                 std::cout << "   ╚═══════════════════════════════════════════════════════════════════════════════════╝\n\n" ;
                 if (this->user == "patient") {
                     // For patients :
@@ -420,7 +440,8 @@ class CommandLineInterface : public DatabaseHandling {
                             break ;
                         }
                         case '2' : {
-                            //search_by_date() ;
+                            display_search_by_date(day, month, year) ;
+                            dateSearch = true ;
                             break ;
                         }
                         default : {
@@ -446,7 +467,8 @@ class CommandLineInterface : public DatabaseHandling {
                             break ;
                         }
                         case '2' : {
-                            // search_by_date() ;
+                            dateSearch = true ;
+                            display_search_by_date(day, month, year) ;
                             break ;
                         }
                         case '3' : {
