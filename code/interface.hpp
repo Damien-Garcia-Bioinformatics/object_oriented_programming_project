@@ -7,12 +7,12 @@
 #include <cstdlib>
 #include <unistd.h> 
 #include <stdio.h>
+#include <filesystem>
 
 #include "patient.hpp"
 #include "doctor.hpp"
 #include "radiography.hpp"
 #include "database.hpp"
-
 
 
 class CommandLineInterface : public DatabaseHandling {
@@ -25,6 +25,7 @@ class CommandLineInterface : public DatabaseHandling {
         // --- Tool functions --- //
         // ---------------------- //
 
+        // Prints the header.
         void header() {
             system("clear") ;
             std::cout << "\n" ;
@@ -39,6 +40,7 @@ class CommandLineInterface : public DatabaseHandling {
             std::cout << "\n" ;
         }
 
+        // Method used to hide password field for privacy purpose.
         std::string password() {
             std::string pw ;
             system("stty -echo") ;
@@ -50,6 +52,7 @@ class CommandLineInterface : public DatabaseHandling {
             return pw ;
         }
 
+        // Method adding tabulataions for tables to have a nice columns/lines format.
         std::string add_tabulation(std::string text, int maxSize) {
             int sizeText {(int)(text.size())} ;
             int sizeTab {maxSize - sizeText} ;
@@ -67,6 +70,7 @@ class CommandLineInterface : public DatabaseHandling {
         // --- Connection menus --- //
         // ------------------------ //
 
+        // Displays the connection menu.
         void display_main() {
             header() ;
             std::cout << "   ╔════════════════╗\n" ;
@@ -79,6 +83,7 @@ class CommandLineInterface : public DatabaseHandling {
             std::cout << "   Selection : " ;
         }
 
+        // Displays the sign in menu, checks if user identifier and password exist in database and are from the same account.
         bool sign_in(std::string &id, std::string &user) {
             std::string login ;
             std::string password ;
@@ -115,6 +120,7 @@ class CommandLineInterface : public DatabaseHandling {
         }
 
 
+        // Displays the sign up menu and allows creation of new patients account.
         bool sign_up() {
             size_t tries {0} ;
             std::string name, surname, ssn ;
@@ -147,7 +153,7 @@ class CommandLineInterface : public DatabaseHandling {
             return false ;
         }
 
-
+        // Allows user interaction with connection menu.
         void connection_menu() {
             bool menu {true} ;
             while (menu) {
@@ -550,6 +556,21 @@ class CommandLineInterface : public DatabaseHandling {
             }
         }
 
+        // void display_open_snapshot(Radiography radio) {
+        //     std::cout << "\n\n" ;
+        //     std::cout << "   ╔══════════════════════════════╗\n" ;
+        //     std::cout << "   ║   Open snapshot file by id   ║\n" ;
+        //     std::cout << "   ╚══════════════════════════════╝\n\n" ;
+        //     std::cout << "   Snapshot id : " ; std::string id ; std::cin >> id ;
+        //     size_t index {radio.get_snap_index(id)} ;
+        //     if (index != -1) {
+        //         Snapshot snap {radio.get_snap(index)} ;
+        //         std::string path {snap.get_path()} ;
+        //         std::string command {"xdg-open" + path} ;
+        //         system(command) ;
+        //     }
+        // }
+
         void display_snapshotReport_interface() {
             std::cout << "\n\n" ;
             std::string radioID ;
@@ -612,6 +633,7 @@ class CommandLineInterface : public DatabaseHandling {
                         std::cout << "      [3] Add Report\n" ;
                         std::cout << "      [4] Delete Report\n" ;
                         std::cout << "      [5] Change state\n" ;
+                        // std::cout << "      [6] Open snapshot file\n" ;
                         std::cout << "   Selection : " ; char c ; std::cin >> c ;
 
                         switch (c) {
@@ -639,6 +661,10 @@ class CommandLineInterface : public DatabaseHandling {
                                 DatabaseHandling::change_radiography_state(radio.get_id()) ;
                                 break ;
                             }
+                            // case '6' : {
+                            //     display_open_snapshot(radio) ;
+                            //     break ;
+                            // }
                             default : {
                                 break ;
                             }
