@@ -33,7 +33,7 @@ Nous avons cependant changé cette considération ensuite pour inclure l'interfa
 		
 Le changement de paradigme s'est opéré quant nous avons implémenté un autre critère du cahier des charges qui nous a été donné, la sauvegarde des données entre les sessions d'accession. Cette approche de \textit{serializing} nous permettait de concevoir l'application en deux états, active et inactive. A l'activation, les données sont téléchargées (\textit{download}), et à la sortie du logiciel sauvegardées (\textit{upload}). \\
 		
-L'interface (faisant référence ici au visuel de l'application, le "menu") ayant accès aux méthodes de la base de données comme détaillé ici-bas, une classe faisant le lien entre utilisateur et radiographie n'était plus nécessaire, tous deux existant dans la même entité instanciée, la \textbf{session}.
+L'interface (faisant référence ici au visuel de l'application, le \"menu\") ayant accès aux méthodes de la base de données comme détaillé ici-bas, une classe faisant le lien entre utilisateur et radiographie n'était plus nécessaire, tous deux existant dans la même entité instanciée, la \textbf{session}.
 		
 \section{Implémentation}
 		
