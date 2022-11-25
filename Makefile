@@ -9,36 +9,47 @@
 
 
 # Ignored if not specificaly called
-.PHONY: clean rebuild test_simple test_complex test_semantic1 test_semantic2 test_semantic3 test_semantic4
+.PHONY: clean rebuild 
 
 # Variables
 EXE = main
 MAIN = main.cpp
 CXX = g++
 CXXFLAGS = -Wall -O2
-OBJECTS = MedicalExamination.o MedicalReport.o Patient.o Radiography.o Snapshot.o
+OBJECTS = header/database.hpp header/doctor.hpp header/interface.hpp header/patient.hpp header/radiography.hpp header/report.hpp header/snapshot.hpp header/user.hpp
 
 
 # Creates executable file
 all: $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $(EXE) $(MAIN) $(OBJECTS)
 
+main:
+	$(CXX) -o $(EXE) $(MAIN)
 
-# Creation of object files of data generation functions
-MedicalExamination.o:
-	$(CXX) $(CXXFLAGS) -c MedicalExamination.cpp
+# Creation of precompiled object files
+database:
+	$(CXX) $(CXXFLAGS) -c header/database.hpp
 
-MedicalReport.o:
-	$(CXX) $(CXXFLAGS) -c MedicalReport.cpp
+interface:
+	$(CXX) $(CXXFLAGS) -c header/interface.hpp
 
-Patient.o:
-	$(CXX) $(CXXFLAGS) -c Patient.cpp
+user:
+	$(CXX) $(CXXFLAGS) -c header/user.hpp
 
-Radiography.o:
-	$(CXX) $(CXXFLAGS) -c Radiography.cpp
+doctor:
+	$(CXX) $(CXXFLAGS) -c header/doctor.hpp
 
-Snapshot.o:
-	$(CXX) $(CXXFLAGS) -c Snapshot.cpp
+patient:
+	$(CXX) $(CXXFLAGS) -c header/patient.hpp
+
+radiography:
+	$(CXX) $(CXXFLAGS) -c header/radiography.hpp
+
+report:
+	$(CXX) $(CXXFLAGS) -c header/report.hpp
+
+snapshot:
+	$(CXX) $(CXXFLAGS) -c header/snapshot.hpp
 
 
 ##############################################################################

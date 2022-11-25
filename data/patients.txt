@@ -3,7 +3,7 @@ name=Damien
 surname=Garcia
 ssn=123456
 password=pomme
-listRadio=231546 4567833 849562 
+listRadio=231546 4567833 
 #End
 
 #Begin
@@ -11,7 +11,7 @@ name=Florian
 surname=Echelard
 ssn=12345
 password=pastèque
-listRadio=231546 454545 986532 
+listRadio=231546 454545 986532 849584 
 #End
 
 #Begin
@@ -47,18 +47,11 @@ listRadio=786553
 #End
 
 #Begin
-name=Victor
-surname=Dubois
-ssn=956295
-password=poire
-listRadio=9954546 326232 
+name=Mourad
+surname=Oussalah
+ssn=875421
+password=enseignant
+listRadio=986532 
 #End
 
-#Begin
-name=Ben
-surname=Prunty
-ssn=287000
-password=subnautica
-listRadio=
-#End
 

@@ -194,6 +194,7 @@ class CommandLineInterface : public DatabaseHandling {
         // --- Doctor interface --- //
         // ------------------------ //
 
+        // Displays the menu to add a patient in database
         void display_add_patient(Doctor &doc) {
             std::string name, surname, ssn, password ;
             std::vector<std::string> listRadio ;
@@ -215,6 +216,7 @@ class CommandLineInterface : public DatabaseHandling {
             }
         }
 
+        // Displays the menu to delete a patient in database
         void display_delete_patient(Doctor &doc) {
             std::string patientID ;
             std::cout << "\n\n" ;
@@ -238,7 +240,7 @@ class CommandLineInterface : public DatabaseHandling {
             }
         }
 
-
+        // Displays the general doctor interface
         void display_doctor_interface() {
             bool menu {true} ;
             while (menu) {

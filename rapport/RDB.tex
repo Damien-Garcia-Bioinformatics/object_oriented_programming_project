@@ -4,28 +4,46 @@
 \usepackage{caption}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{indentfirst}
+\usepackage{tcolorbox}
 
 \newenvironment{Figure}
 {\par\medskip\noindent\minipage{\linewidth}}
 {\endminipage\par\medskip}
 
-\begin{document}
-	\title{Rapport Programmation Orientée Objet}
-	\author{Damien GARCIA -- Florian ECHELARD}
-	\date{Novembre 2022}
-	\maketitle
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+	\title{Rapport de projet -- Programmation Orientée Objet}
+	\author{Damien \textsc{Garcia} -- Florian \textsc{Echelard}}
+	\date{Novembre 2022}
+	
+	\begin{tcolorbox}
+		\maketitle		
+	\end{tcolorbox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
 	\begin{multicols}{2}
 
-		\section{Introduction}	
-		Le but de ce projet est de fournir un outil de gestion de radiographies pour les médecins au sein d'un centre de santé. Pour cela, nous avons commencé par établir les objectifs d'ergonomie et d'accessibilité relatifs à ce logiciel, discuté ensuite de l'implémentation en classes et leur interface relationnelle, puis des éléments utilisés au niveau du code pour élargir et préciser l'application.
+		\section{Introduction}
+
+		Le but de ce projet est de fournir un outil de gestion de radiographies pour les médecins au sein d'un centre de santé en s'appuyant sur le paradigme de programmation orienté objet. Pour cela, nous avons commencé par établir les objectifs d'ergonomie et d'accessibilité relatifs à ce logiciel, discuté ensuite de l'implémentation en classes et leur interface relationnelle, puis des éléments utilisés au niveau du code pour élargir et préciser l'application.
+		
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 		\section{Objectifs et Approche}
-		L'interface définie par le projet permet à un médecin d'accéder aux radiographies de ses patients, ainsi qu'aux données associées à ces radiographies. Un autre médecin n'y aura pas accès, puisque ces patients ne sont pas les siens. \\
+		
+		L'interface définie par le projet doit permettre à un médecin d'accéder aux radiographies de ses patients, ainsi qu'aux données associées à ces radiographies. Un médecin donné, n'aura accès qu'aux radiographies de ses propres patients, mais pas à celles des autres médecins.\\
 				
-		Du fait de la séparation des accès aux données, des méthodes de recherches, autorisant ou non l'accès à celles-ci doivent être établies et implémentées. \\
-				
-		Très tôt dans la discussion de notre approche, la volonté de créer des statuts d'accessibilité pour ouvrir l'utilisation de l'application à des non-médecin est remontée. C'est pourquoi nous avons trouvé le moyen d'implémenter différents statuts, comme discuté dans le prochain chapitre. \\
+		Du fait de la séparation des accès aux données, des méthodes de recherches, autorisant ou non l'accès à celles-ci doivent être établies et implémentées. De plus certaines de ces données doivent être protégée par mot de passe, notamment le rapport médical associé aux examens médicaux. Dans un objectif de cohérence générale de l'implémentation, nous avons rapidement opté par implémenter un système de \textit{Login}, c'est-à-dire qu'un utilisateur, avant de pouvoir accéder à quelconque donnée, doit s'identifier sur la base de données ce qui permettra par la suite de lui rendre disponible uniquement les dossiers médicaux lui étant associés. \\
 				
 		Ces différents niveaux d'accessibilité variant les informations qu'un utilisateur peut recevoir, le premier réflexe était de regrouper les éléments d'intérêt dans un classe à l'interface des utilisateurs et de l'accès à la base de données pour distribuer de manière contrôlée les attributs. \\
 				
@@ -34,6 +52,10 @@
 		Le changement de paradigme s'est opéré quant nous avons implémenté un autre critère du cahier des charges qui nous a été donné, la sauvegarde des données entre les sessions d'accession. Cette approche de \textit{serializing} nous permettait de concevoir l'application en deux états, active et inactive. A l'activation, les données sont téléchargées (\textit{download}), et à la sortie du logiciel sauvegardées (\textit{upload}). \\
 				
 		L'interface (faisant référence ici au visuel de l'application, le \"menu\") ayant accès aux méthodes de la base de données comme détaillé ici-bas, une classe faisant le lien entre utilisateur et radiographie n'était plus nécessaire, tous deux existant dans la même entité instanciée, la \textbf{session}.
+		
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				
 				
 		\section{Implémentation}
 				
@@ -48,8 +70,27 @@
 		\textbf{DBH} utilise une méthode de serializing simple itérant sur les lignes d'un fichier texte pour y associer les variables à implémenter dans la classe \textbf{Radiographie}. \textbf{Interface} hérite donc de \textbf{DBH} et cette dernière est composée de radiographies.
 				
 		La classe \textbf{Interface} permet de proposer un menu intéractif affichant le contenu chargé par \textbf{DBH} au lancement de la session, ainsi que l'actualisation de l'information.
-				
-		\section{\textit{Walkthrough} et Jeux d'essais}
+		
+	\end{multicols}
+	
+%	\pagebreak
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/UML_OOP.png}
+		\captionof{figure}{Diagramme UML présentant la structure de l'implémentation}
+		\label{fig:UML}
+	\end{figure}
+
+	\pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+	\begin{multicols}{2}
+		
+		\section{Utilisation de l'interface}
 				
 		Avec de faux docteurs et patients, ainsi que des radiographies, déjà présent dans notre jeu de données, nous allons procéder à un test de notre application. \\
 				

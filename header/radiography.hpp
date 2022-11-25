@@ -137,7 +137,7 @@ class Radiography {
 
         // Returns the index of a specific snapshot in the list of spnapshots.
         int get_snap_index(std::string id) {
-            for (int i=0 ; i<this->get_snaps().size() ; i++) {
+            for (int i=0 ; i<(int)(this->get_snaps().size()) ; i++) {
                 if (this->get_snaps()[i].get_id() == id) {
                     return i ;
                 }

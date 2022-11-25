@@ -144,12 +144,12 @@ class DatabaseHandling {
 				} else if (line.substr(0, line.find('=')) == "listRadio") {
 					std::string section {line.substr(line.find('=') +1)} ;
 					std::string temp ;
-					for (int iter=0; iter<section.size() ; iter++) {
-						if (section[iter] == ' ') {
+					for (size_t i=0; i<section.size() ; i++) {
+						if (section[i] == ' ') {
 							listRadio.push_back(temp) ;
 							temp.clear() ;
 						} else {
-							temp += section[iter] ;
+							temp += section[i] ;
 						}
 					}
 					if (!temp.empty()) {
@@ -286,7 +286,7 @@ class DatabaseHandling {
 				}else if (line.substr(0, line.find('=')) == "listPatients") {
 					std::string section {line.substr(line.find('=') +1)} ;
 					std::string temp ;
-					for (int i=0 ; i<section.size() ; i++) {
+					for (size_t i=0 ; i<section.size() ; i++) {
 						if (section[i] == ' ') {
 							listPatients.push_back(temp) ;
 							temp.clear() ;
@@ -326,7 +326,7 @@ class DatabaseHandling {
 				file << "cnomId=" << listDoctors[i].get_cnomId() << "\n" ;
 				file << "password=" << listDoctors[i].get_password() << "\n" ;
 				file << "listPatients=" ;
-				for (int j=0 ; j<listDoctors[i].get_listPatients().size() ; j++) {
+				for (size_t j=0 ; j<listDoctors[i].get_listPatients().size() ; j++) {
 					file << listDoctors[i].get_listPatients()[j] << " " ;
 				}file << "\n" ;
 				file << "#End\n\n" ;
@@ -458,8 +458,8 @@ class DatabaseHandling {
 					database[i].get_month() == month &&
 					database[i].get_day()   == day
 					) {
-					for (size_t i=0 ; i<radiographies.size(); i++) {
-						if (radiographies[i] == database[i].get_id()) {
+					for (size_t j=0 ; j<radiographies.size(); j++) {
+						if (radiographies[j] == database[i].get_id()) {
 							result.push_back(database[i].get_id());
 						}
 					}
