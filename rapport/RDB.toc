@@ -1,8 +1,9 @@
 \babel@toc {french}{}
-\contentsline {section}{\numberline {1}Introduction}{2}%
-\contentsline {subsection}{\numberline {1.1}Objectifs}{2}%
-\contentsline {subsection}{\numberline {1.2}Approches}{2}%
-\contentsline {section}{\numberline {2}Implémentation}{2}%
-\contentsline {section}{\numberline {3}Utilisation de l'interface}{4}%
-\contentsline {section}{\numberline {4}Perspectives}{5}%
-\contentsline {section}{\numberline {5}Conclusion}{5}%
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Objectifs}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Approches}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Implémentation}{2}{section.2}%
+\contentsline {section}{\numberline {3}Utilisation de l'interface}{4}{section.3}%
+\contentsline {section}{\numberline {4}Notice Utilisateur}{6}{section.4}%
+\contentsline {section}{\numberline {5}Perspectives}{7}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}%

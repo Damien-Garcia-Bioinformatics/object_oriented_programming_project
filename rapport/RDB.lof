@@ -1,3 +1,11 @@
 \babel@toc {french}{}
-\contentsline {figure}{\numberline {1}{\ignorespaces Diagramme UML présentant la structure de l'implémentation\relax }}{3}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Structure en \FB@og couches\FB@fg \relax {} de l'interface\relax }}{4}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Diagramme UML présentant la structure de l'implémentation\relax }}{3}{figure.caption.3}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Menu principal\relax }}{4}{figure.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Page de connexion\relax }}{4}{figure.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Liste de patients du menu Docteur\relax }}{4}{figure.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Le menu spécifique pour un patient\relax }}{4}{figure.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Ajout d'un patient\relax }}{5}{figure.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces L'erreur retournée lors de la tentative d'effacement\relax }}{5}{figure.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Contenu d'une radiographie pour un patient\relax }}{5}{figure.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Le menu accessible pour un patient\relax }}{6}{figure.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Structure en \FB@og couches\FB@fg \relax {} de l'interface\relax }}{6}{figure.10}%

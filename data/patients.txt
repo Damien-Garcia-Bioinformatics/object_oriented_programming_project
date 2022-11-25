@@ -39,10 +39,10 @@ listRadio=573856
 #End
 
 #Begin
-name=a
-surname=a
-ssn=a
-password=a
+name=Carine
+surname=Bernaud
+ssn=4487996
+password=kiwi
 listRadio=786553 
 #End
 

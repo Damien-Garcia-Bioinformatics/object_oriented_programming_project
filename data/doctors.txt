@@ -15,8 +15,8 @@ listPatients=32786 95487
 #End
 
 #Begin
-name=Emmanuel
-surname=Charpentier
+name=Christine
+surname=Sinoquet
 cnomId=315498
 password=tomate
 listPatients=a 88754693 789786 
