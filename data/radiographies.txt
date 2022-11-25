@@ -127,7 +127,8 @@ month=1
 year=2023
 snapID=7586 
 snapPath=path/to/file/7586 
-rep=
+rep=Patient is healthy, no further examination necessary.
+
 #End
 
 #Begin

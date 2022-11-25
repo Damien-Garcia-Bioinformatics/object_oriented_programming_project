@@ -28,9 +28,9 @@ class DatabaseHandling {
 		}
 
 		void load_progress() {
-			upload_radiographies_database() ;
-			upload_patients_database() ;
-			upload_doctors_database() ;
+			download_radiographies_database() ;
+			download_patients_database() ;
+			download_doctors_database() ;
 		}
 
 		// --- Common methods --- //
@@ -66,7 +66,7 @@ class DatabaseHandling {
 
 		// Set function :
 		void set_listPatients() {
-			this->listPatients = upload_patients_database() ;
+			this->listPatients = download_patients_database() ;
 		}
 
 		// Get function :
@@ -115,7 +115,7 @@ class DatabaseHandling {
 		}
 
 		// Extracts patients data from file "data/patients.txt" (the patients database).
-		std::vector<Patient> upload_patients_database() {
+		std::vector<Patient> download_patients_database() {
 			std::vector<Patient> listPatients ;
 			std::string name, surname, ssn, password ;
 			std::vector<std::string> listRadio ;
@@ -124,7 +124,7 @@ class DatabaseHandling {
 			std::ifstream file ;
 			file.open(path, std::ios::in) ;
 			if (!file.is_open()) {
-				std::cout << "Could not upload patients.txt file" << std::endl ;
+				std::cout << "Could not download patients.txt file" << std::endl ;
 				exit(1) ;
 			}
 
@@ -199,7 +199,7 @@ class DatabaseHandling {
 
 		// Set function :
 		void set_listDoctors() {
-			this->listDoctors = upload_doctors_database() ;
+			this->listDoctors = download_doctors_database() ;
 		}
 
 		// Get functions :
@@ -245,7 +245,7 @@ class DatabaseHandling {
 			size_t index {(size_t)(get_doctor_by_cnomId(cnomId))} ;
 			DatabaseHandling::listDoctors[index].add_patient(patientId) ;
 			DatabaseHandling::update_doctors_database() ;
-			DatabaseHandling::upload_doctors_database() ;
+			DatabaseHandling::download_doctors_database() ;
 		}
 
 		// Deletes a patient ID from the Doctor specified with cnomID.
@@ -253,11 +253,11 @@ class DatabaseHandling {
 			size_t index {(size_t)(get_doctor_by_cnomId(cnomId))} ;
 			DatabaseHandling::listDoctors[index].delete_patient(patientID) ;
 			DatabaseHandling::update_doctors_database() ;
-			DatabaseHandling::upload_doctors_database() ;
+			DatabaseHandling::download_doctors_database() ;
 		}
 
 		// Extracts Doctors data from file "data/doctors.txt" (the doctors database).
-		std::vector<Doctor> upload_doctors_database() {
+		std::vector<Doctor> download_doctors_database() {
 			std::vector<Doctor> listDoctors ;
 			std::string name, surname, cnomId, password ;
 			std::vector<std::string> listPatients ;
@@ -266,7 +266,7 @@ class DatabaseHandling {
 			std::ifstream file ;
 			file.open(path, std::ios::in) ;
 			if (!file.is_open()) {
-				std::cout << "Could not upload doctors.txt file" << std::endl ;
+				std::cout << "Could not download doctors.txt file" << std::endl ;
 				exit(1) ;
 			}
 
@@ -366,7 +366,7 @@ class DatabaseHandling {
 
 		// Set function :
 		void set_listRadiographies() {
-			this->listRadiographies = upload_radiographies_database() ;
+			this->listRadiographies = download_radiographies_database() ;
 		}
 
 
@@ -376,14 +376,14 @@ class DatabaseHandling {
 		void add_radiography(Radiography radio) {
 			this->listRadiographies.push_back(radio) ;
 			DatabaseHandling::update_radiographies_database() ;
-			DatabaseHandling::upload_radiographies_database() ;
+			DatabaseHandling::download_radiographies_database() ;
 		}
 
 		// Adds a radiography id to a patient 
 		void add_radiography_to_patient(std::string patientID, std::string radioID) {
 			this->listPatients[get_patient_by_ssn(patientID)].add_radiography_to_listRadiographies(radioID) ;
 			DatabaseHandling::update_patients_database() ;
-			DatabaseHandling::upload_patients_database() ; 
+			DatabaseHandling::download_patients_database() ; 
 		}
 
 		// Removes a radiography, specified by its ID from the list of radiographies in database.
@@ -392,7 +392,7 @@ class DatabaseHandling {
 				if (this->listRadiographies[i].get_id() == radioID) {
 					this->listRadiographies.erase(this->listRadiographies.begin() + i) ;
 					DatabaseHandling::update_patients_database() ;
-					DatabaseHandling::upload_patients_database() ;
+					DatabaseHandling::download_patients_database() ;
 				}
 			}
 		}
@@ -401,7 +401,7 @@ class DatabaseHandling {
 		void delete_radiography_from_patient(std::string patientID, std::string radioID) {
 			this->listPatients[get_patient_by_ssn(patientID)].remove_radiography_from_listRadiographies(radioID) ;
 			DatabaseHandling::update_patients_database() ;
-			DatabaseHandling::upload_patients_database() ;
+			DatabaseHandling::download_patients_database() ;
 		}
 
 		// Switch the state (done/pending) of a Radiography specified by ID and updates the database.
@@ -413,7 +413,7 @@ class DatabaseHandling {
 				this->listRadiographies[radioIndex].set_state(done) ;
 			}
 			DatabaseHandling::update_radiographies_database() ;
-			DatabaseHandling::upload_radiographies_database() ;
+			DatabaseHandling::download_radiographies_database() ;
 		}
 
 		// Adds a snapshot to a radiography specified by ID and updates the database in consequence.
@@ -421,7 +421,7 @@ class DatabaseHandling {
 			int index {get_radiography_by_id(radioID)} ;
 			this->listRadiographies[index].add_snap(snap) ;
 			DatabaseHandling::update_radiographies_database() ;
-			DatabaseHandling::upload_radiographies_database() ;
+			DatabaseHandling::download_radiographies_database() ;
 		}
 
 		// Deletes a snapshot from a radiography specified by ID and updates the database in consequence.
@@ -430,7 +430,7 @@ class DatabaseHandling {
 			int snapIndex {this->listRadiographies[radioIndex].get_snap_index(snapID)} ;
 			this->listRadiographies[radioIndex].del_snap(snapIndex) ;
 			DatabaseHandling::update_radiographies_database() ;
-			DatabaseHandling::upload_radiographies_database() ;
+			DatabaseHandling::download_radiographies_database() ;
 		}
 
 		// Adds/updates a report object to radiography specified by ID and updates the database.
@@ -438,7 +438,7 @@ class DatabaseHandling {
 			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
 			this->listRadiographies[radioIndex].add_report(Report(rep)) ;
 			DatabaseHandling::update_radiographies_database() ;
-			DatabaseHandling::upload_radiographies_database() ;
+			DatabaseHandling::download_radiographies_database() ;
 		}
 
 		// Removes a report from a radiography specified by ID and update the database.
@@ -446,7 +446,7 @@ class DatabaseHandling {
 			int radioIndex {DatabaseHandling::get_radiography_by_id(radioID)} ;
 			this->listRadiographies[radioIndex].del_report() ;
 			DatabaseHandling::update_radiographies_database() ;
-			DatabaseHandling::upload_radiographies_database() ;
+			DatabaseHandling::download_radiographies_database() ;
 		}
 
 		// Performs a search by date in list of radiographies.
@@ -469,7 +469,7 @@ class DatabaseHandling {
 		}
 
 		// Extracts Radiographies data from file "data/radiographies.txt" (the Radiography database).
-		std::vector<Radiography> upload_radiographies_database() {
+		std::vector<Radiography> download_radiographies_database() {
             std::vector<Radiography> radiographies ;
 			std::string id ;
             radiographyType type ;
@@ -485,7 +485,7 @@ class DatabaseHandling {
 			
 			file.open(path, std::ios::in) ;
 			if (!file.is_open()) {
-				std::cout << "Could not upload radiographies.txt file" << std::endl ;
+				std::cout << "Could not download radiographies.txt file" << std::endl ;
 				exit(1) ;
 			}
 

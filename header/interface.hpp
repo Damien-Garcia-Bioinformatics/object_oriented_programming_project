@@ -393,7 +393,7 @@ class CommandLineInterface : public DatabaseHandling {
                 } else {
                     pat = DatabaseHandling::get_patient(get_patient_by_ssn(patientID)) ;
                 }
-                DatabaseHandling::upload_patients_database() ;
+                DatabaseHandling::download_patients_database() ;
                 header() ;
                 std::cout << "   Patient : " << pat.get_name() << " " << pat.get_surname() << "\n\n\n" ;
                 
@@ -586,7 +586,7 @@ class CommandLineInterface : public DatabaseHandling {
             } else {
                 bool menu {true} ;
                 while (menu) {
-                    DatabaseHandling::upload_radiographies_database() ;
+                    DatabaseHandling::download_radiographies_database() ;
                     Radiography radio {get_radiography(radioID)} ;
                     header() ;
                     std::cout << "   Radiography informations :\n\n" ;
