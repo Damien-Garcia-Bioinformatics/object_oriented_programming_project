@@ -6,6 +6,7 @@
 
 % Figures :
 \usepackage{caption}
+\usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{float}
 \newenvironment{Figure}
@@ -40,7 +41,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-	\begin{multicols}{2}
+	\begin{multicols}{2} %\setlength{\columnseprule}{0.4pt}
 		
 		\section{Introduction}
 
@@ -63,9 +64,6 @@
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		
-	\end{multicols}
-	
-	\begin{multicols}{2}
 
 		\section{Implémentation}
 				
@@ -98,11 +96,13 @@
 
 	\begin{multicols}{2}
 		
-		\section{Utilisation de l'interface}
+		\section{Le logiciel}
+		
+		\subsection{Description de l'interface}
 		
 		Nous avons généré un jeux de données composé de patients, médecins et radiographies fictives afin de présenter l'interface.\\
 		
-		Pour commencer, voici comment le menu principal se présente au lancement de l'application (Figure \ref{fig:main_menu}) \\
+		Pour commencer, voici comment le menu principal se présente au lancement de l'application (Fig. \ref{fig:main_menu}) \\
 		
 		\begin{Figure}
 			\centering
@@ -111,7 +111,7 @@
 			\label{fig:main_menu}
 		\end{Figure}
 		
-		Si l'on choisit de se connecter, un formulaire est affiché et donne 3 tentatives d'authentification avant de revenir au menu principal (Fig. 2\ref). \\
+		Si l'on choisit de se connecter, un formulaire est affiché et donne 3 tentatives d'authentification avant de revenir au menu principal (Fig. \ref{fig:sign_in}). \\
 		
 		\begin{Figure}
 			\centering
@@ -120,7 +120,7 @@
 			\label{fig:sign_in}
 		\end{Figure}
 		
-		Ici, nous fournissons l'information d'un docteur, il est donc reconnu et nous pouvons accéder à sa liste de patient, ainsi que l'accès à un patient précis, l'ajout et la délétion de patients, comme vu dans la Figure 3. \\
+		Ici, nous fournissons l'information d'un docteur, il est reconnu dans la base de données et nous pouvons accéder à sa liste de patients, en ajouter et supprimer, ainsi qu'accéder aux données spécifique de chacun des patients de la liste (Fig. \ref{fig:doctor_menu}). \\
 		
 		\begin{Figure}
 			\centering
@@ -129,7 +129,7 @@
 			\label{fig:doctor_menu}
 		\end{Figure}
 		
-		Si l'on décide d'accéder à un patient grâce à un identifiant, un nouveau menu s'affiche, avec la liste des radiographies que cet individu a effectué. Nous pouvons décider de regarder le contenu d'une consultation, que ce soit par un identifiant précis ou la date de consultation. Nous pouvons aussi tenter de rentrer une nouvelle consultation pour ce patient, ce que nous allons essayer de suite dans la Figure 4. \\
+		Si l'on décide d'accéder à un patient grâce à son identifiant, un nouveau menu s'affiche avec la liste des radiographies que cet individu a effectué. Nous pouvons décider de regarder le contenu d'une consultation, que ce soit par un identifiant précis ou la date de consultation, ou encore ajouter et supprimer des consultatations pour ce patient (Fig \ref{fig:patient_menu}). \\
 		
 		\begin{Figure}
 			\centering
@@ -138,16 +138,16 @@
 			\label{fig:patient_menu}
 		\end{Figure}
 		
-		Voici comment de nouvelles radios sont entrées pour un patient (Figure 5). \\
+		Voici comment de nouvelles radios sont entrées pour un patient (Fig. \ref{fig:add_patient}). \\
 		
 		\begin{Figure}
 			\centering
 			\includegraphics[width=\linewidth]{images/walkthrough/doctor_patient_add.png}
-			\captionof{figure}{Ajout d'un patient}
+			\captionof{figure}{Ajout de radiographie à un patient}
 			\label{fig:add_patient}
 		\end{Figure}
 		
-		Pour retirer une radio, il suffit de donner son identifiant. Dans la Figure 6, nous démontrons que si jamais l'identifiant n'existe pas pour quelque requête que ce soit dans tous le logiciel, il y a un retour d'erreur et un retour à l'étape de choix précédente. \\
+		Pour retirer une radio, il suffit de donner son identifiant. Si jamais l'identifiant n'existe pas quelque soit la requête, un message d'erreur est retourné (Fig. \ref{fig:err_del_patient}) \\
 		
 		\begin{Figure}
 			\centering
@@ -156,8 +156,7 @@
 			\label{fig:err_del_patient}
 		\end{Figure}
 		
-		Lorsqu'on essaie d'accéder au contenu de radiographie, nous somme présentés avec celui-ci et des options d'édition du compte-rendu et des adresses des photos. On peut aussi ajouter et retirer chacun de ceux-ci comme visible dans la Figure 7. \\
-		
+		L'accès au contenu d'une radiographie permet d'accéder aux clichés et compte-rendu médical associés. Si l'accès se fait via un compte médecin, des options pour éditer le compte-rendu, ajouter et supprimer les clichés sont disponibles (Fig. \ref{fig:search_id}).
 		\begin{Figure}
 			\centering
 			\includegraphics[width=\linewidth]{images/walkthrough/doctor_patient_searchid.png}
@@ -165,7 +164,7 @@
 			\label{fig:search_id}
 		\end{Figure}
 		
-		Pour finir, si dans la page de connexion un identifiant de patient est rentré, le menu affiché ne sera pas celui d'un docteur, mais une version limitée à la consultation du enu patient, comme visible dans la Figure 8. \\
+		Pour finir, si dans la page de connexion un identifiant de patient est entré, le menu affiché ne sera pas celui d'un docteur, mais une version limitée à la consultation des données, sans options d'édition (Fig. \ref{fig:radio_menu}). \\
 		
 		\begin{Figure}
 			\centering
@@ -174,38 +173,30 @@
 			\label{fig:radio_menu}
 		\end{Figure}
 		
-		Lorsque vous sortez du programme, vos modifications quant à n'importe quel aspect est sauvegardé et écrit dans le disque.
+		Dès la fermeture (normale) du programme, toutes les données modifiés dans la session sont sauvegardées et seront disponibles à la prochaine exécution du programme. \\
 		
-		\section{Notice Utilisateur}
-		
-		Bienvenue sur \textbf{\textit{DATABASE}}, votre outil d'accès aux radiographies. Si vous êtes docteur, vous avez juste à rentrer votre identifiant ou votre mot de passe. Si vous êtes patient, vous pouvez vous connecter si un identifiant vous a été fourni au préalable, ou vous inscrire de vous-même. \\
-		
-		Une fois cette étape effectuée, vous pourrez consulter vos patients si vous êtes médecin, ou directement les radiographies que vous avez effectué si vous êtes patient. Suivez les instructions à l'écran et entrez les numéros de choix, puis la touche entrée. \\
-		
-		Cela vous permettra d'accéder ou modifier à vos souhaits la \textbf{\textit{DATABASE}}.
-		
-		\end{multicols}
-		
-		\begin{Figure}
-			\centering
-			\includegraphics[width=0.7\linewidth]{images/structure.png}
-			\captionof{figure}{Structure en \og couches\fg{} de l'interface}
-			\label{fig:structure}
-		\end{Figure}
-	
-	\pagebreak
-	
-	\begin{multicols}{2}
+		\begin{tcolorbox}
+		\subsection{Notice Utilisateur}
+
+			Bienvenue sur \textbf{DATABASE}, votre outil d'accès aux radiographies. Si vous êtes docteur, vous avez juste à rentrer votre identifiant ou votre mot de passe. Si vous êtes patient, vous pouvez vous connecter si un identifiant vous a été fourni au préalable, ou vous inscrire de vous-même. \\
+			
+			Une fois cette étape effectuée, vous pourrez consulter vos patients si vous êtes médecin, ou directement les radiographies que vous avez effectué si vous êtes patient. Suivez les instructions à l'écran et entrez les numéros de choix, puis la touche entrée. \\
+			
+			Cela vous permettra d'accéder ou modifier à vos souhaits la \textbf{DATABASE}.
+		\end{tcolorbox}
+
 				
 		\section{Perspectives}
 		
-		Pouvant affirmer avec confiance avoir respecté le cahier des charges, nous avons cependant rencontré beaucoup de possibilités d'implémentation au cours du développement. De part les contraintes de temps, nous sommes allé à l'essentiel, favorisant le fonctionnement de l'infrastructure interface - base de données plutôt que l'implémentation d'outils poussés pour gérer certaines des tâches de notre application. \\
+		Le cahier des charges nous semble respecté dans l'ensemble. De part les contraintes de temps, nous sommes allé à l'essentiel, favorisant le fonctionnement de l'infrastructure interface - base de données plutôt que l'implémentation d'outils poussés pour gérer certaines des tâches de notre application. \\
 		
-		Parmi celles dont nous percevons une possibilité d'amélioration est le \textit{serialising}, la base de donnée étant du texte pour l'instant, écrit en dur et actualisé à la sortie de l'application. Du \og vrai\fg{} \textit{serialising}, compilant les objets en binaire sur le disque dur, permettrait d'implémenter des méthodes évitant le conflit que deux utilisateurs possèdent le même identifiant, ce qui est le cas pour l'instant. \\
+		Parmi celles dont nous percevons une possibilité d'amélioration est le \textit{serialising}. La base de donnée étant du texte pour l'instant, écrit en dur et actualisé à la sortie de l'application ce qui pourrait pour des questions de sécurité et d'optimisation être modifié. Du \og vrai\fg{} \textit{serialising}, compilant les objets en binaire sur le disque dur, permettrait aussi d'implémenter plus aisément des méthodes évitant le conflit entre utilisateur ayant le même identifiant, ce qui est le cas pour l'instant. \\
 		
 		Le reste des modifications auxquelles nous avons pensé prennent avantage du langage C++ et de son environnement. Par exemple, la gestion des dates et de types de données connus par des librairies spécifiques apporteraient une modularité supplémentaire quant aux vérifications et fonctions que nous souhaitons faire sur celles-ci. Ensuite, en raison de comment nous avons construit notre interface, nous avons fait de la sur-définition de plusieurs constructeurs, et pourrions utiliser un constructeur prenant avantage du polymorphisme, qui regroupe l'initialisation d'élément en commun pour les constructeurs sur-définis. Certaines des classes liées que nous avons écrite pourraient bénéficier de la construction d'un patron dédié, comme le couple Docteur - Patient, ou Photos - Compte rendu. \\
 		
-		Finalement, nous avons construit la classe abstraite Utilisateur pour l'héritage, mais aurions pu étendre son utilité en lui fournissant des fonctions virtuelles et bénéficier de méthodes optimisées par la suite. \\
+		Aussi, nous avons construit la classe abstraite Utilisateur pour l'héritage, mais aurions pu étendre son utilité en lui fournissant des fonctions virtuelles et bénéficier de méthodes optimisées par la suite. \\
+		
+		Enfin, il serait bénéfique de séparer un certain nombre de méthodes de \textbf{DatabaseHandling} directement dans les classes \textbf{Patient}, \textbf{Doctor} et \textbf{Radiography}, ce qui aurait nécessité de remanier l'architecture UML du logiciel.
 		
 		\section{Conclusion}
 		
@@ -213,10 +204,24 @@
 		
 		L'architecture des classes nous permet d'encapsuler les utilisateurs et les données de radiographie dans une interface grâce à une classe de gestion dédiée. \\
 		
-		Nous avons réussi à remplir le cahier des charges, ainsi que d'aller plus loin pour se rapprocher d'une application réaliste, même si quelques étapes restent à considérer avant cela, que ce soit au niveau de l'architecture ou des fonctionnalités. \\
+		Nous avons réussi à remplir le cahier des charges, ainsi que d'aller plus loin pour se rapprocher d'une application réaliste, même si quelques étapes restent à considérer avant cela, autant du point de vue de l'architecture que des fonctionnalités. \\
+		
+		Après ce premier projet en programmation orientée objet, nous avons pu tirer les conséquences des décisions que nous avons prit initialement, notamment dans l'architecture UML. Ceci nous amènera certainement à penser les futurs projet orienté objet de manière plus informé. \\
 		
 		\textit{N.B. : Tout numéro de sécurité sociale où identifiant de l'ordre des médecins présent dans notre base de données est totalement fortuit et ne résulte absolument pas d'une attaque informatique sur les serveurs gouvernementaux.} \\
 		
 	\end{multicols}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\section{Annexes}
+	
+	\begin{Figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{images/structure.png}
+		\captionof{figure}{Structure en \og couches\fg{} de l'outil}
+		\subcaption{Dans l'interface, chaque classe présentée sur ce schéma aura accès à toutes les informations des couches inférieures. Par exemple, \textbf{Patient} aura accès à \textbf{Radiography} et \textbf{Snapshot} mais pas à \textbf{Doctor}. Cette notion n'est pas directement représenté dans le diagramme UML mais est induite par les méthodes de l'interface.}
+		\label{fig:structure}
+	\end{Figure}
 	
 \end{document}

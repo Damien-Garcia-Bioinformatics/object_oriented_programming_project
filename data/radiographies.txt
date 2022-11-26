@@ -19,7 +19,7 @@ month=8
 year=2019
 snapID=00002 35789 456 87 123457 66897 546 3224 
 snapPath=path/to/file00002 path/to/file35789 path/to/file456 path/to/file87 path/to/file123457 path/to/file66897 path/to/file543 path/to/file3224 
-rep=Exam shows presence of tumoral growth in the prefrontal lobe.
+rep=
 #End
 
 #Begin

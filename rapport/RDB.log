@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.5.4)  25 NOV 2022 18:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.9.3)  26 NOV 2022 16:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -182,6 +182,11 @@ Package caption Info: Standard document class detected.
 \c@caption@flags=\count198
 \c@continuedfloat=\count199
 )
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
+\c@subfigure=\count266
+\c@subtable=\count267
+)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -204,7 +209,7 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 )
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count266
+\c@float@type=\count268
 \float@exts=\toks17
 \float@box=\box91
 \@float@everytoks=\toks18
@@ -260,14 +265,14 @@ ex
 \pgf@yd=\dimen181
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count267
-\c@pgf@countb=\count268
-\c@pgf@countc=\count269
-\c@pgf@countd=\count270
+\c@pgf@counta=\count269
+\c@pgf@countb=\count270
+\c@pgf@countc=\count271
+\c@pgf@countd=\count272
 \t@pgf@toka=\toks23
 \t@pgf@tokb=\toks24
 \t@pgf@tokc=\toks25
-\pgf@sys@id@count=\count271
+\pgf@sys@id@count=\count273
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2020/01/08 v3.1.5b (3.1.5b)
 )
@@ -283,8 +288,8 @@ File: pgfsys-common-pdf.def 2020/01/08 v3.1.5b (3.1.5b)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
 tex
 File: pgfsyssoftpath.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfsyssoftpath@smallbuffer@items=\count272
-\pgfsyssoftpath@bigbuffer@items=\count273
+\pgfsyssoftpath@smallbuffer@items=\count274
+\pgfsyssoftpath@bigbuffer@items=\count275
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
 tex
@@ -314,7 +319,7 @@ Package: pgfcore 2020/01/08 v3.1.5b (3.1.5b)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen182
-\pgfmath@count=\count274
+\pgfmath@count=\count276
 \pgfmath@box=\box94
 \pgfmath@toks=\toks26
 \pgfmath@stack@operand=\toks27
@@ -338,7 +343,7 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
 thmetics.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count275
+\c@pgfmathroundto@lastzeros=\count277
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
@@ -377,7 +382,7 @@ File: pgfcorescopes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgfpic=\box95
 \pgf@hbox=\box96
 \pgf@layerbox@main=\box97
-\pgf@picture@serial@count=\count276
+\pgf@picture@serial@count=\count278
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
 ode.tex
@@ -410,8 +415,8 @@ File: pgfcorearrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgf@max=\dimen262
-\pgf@sys@shading@range@num=\count277
-\pgf@shadingcount=\count278
+\pgf@sys@shading@range@num=\count279
+\pgf@shadingcount=\count280
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
@@ -467,15 +472,15 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count279
+\etb@tempcnta=\count281
 )
 \tcb@titlebox=\box100
 \tcb@upperbox=\box101
 \tcb@lowerbox=\box102
 \tcb@phantombox=\box103
-\c@tcbbreakpart=\count280
-\c@tcblayer=\count281
-\tcolorbox@number=\count282
+\c@tcbbreakpart=\count282
+\c@tcblayer=\count283
+\tcolorbox@number=\count284
 \tcb@temp=\box104
 \tcb@temp=\box105
 \tcb@temp=\box106
@@ -522,8 +527,8 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen265
-\Hy@linkcounter=\count283
-\Hy@pagecounter=\count284
+\Hy@linkcounter=\count285
+\Hy@pagecounter=\count286
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
@@ -536,8 +541,8 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count285
-\pdfmajorversion=\count286
+\Hy@SavedSpaceFactor=\count287
+\pdfmajorversion=\count288
 Package hyperref Info: Hyper figures OFF on input line 4547.
 Package hyperref Info: Link nesting OFF on input line 4552.
 Package hyperref Info: Hyper index ON on input line 4555.
@@ -545,7 +550,7 @@ Package hyperref Info: Plain pages OFF on input line 4562.
 Package hyperref Info: Backreferencing OFF on input line 4567.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4800.
-\c@Hy@tempcnt=\count287
+\c@Hy@tempcnt=\count289
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
@@ -561,7 +566,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count288
+\Fld@menulength=\count290
 \Field@Width=\dimen267
 \Fld@charsize=\dimen268
 Package hyperref Info: Hyper figures OFF on input line 6430.
@@ -577,9 +582,9 @@ LaTeX Info: Redefining \pageref on input line 6504.
 (/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count289
-\c@Item=\count290
-\c@Hfootnote=\count291
+\Hy@abspage=\count291
+\c@Item=\count292
+\c@Hfootnote=\count293
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -589,8 +594,8 @@ File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
 (/usr/share/texlive/texmf-dist/tex/latex/atveryend/atveryend.sty
 Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 )
-\Fld@listcount=\count292
-\c@bookmark@seq@number=\count293
+\Fld@listcount=\count294
+\c@bookmark@seq@number=\count295
 
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
@@ -605,36 +610,36 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count294
+\l__kernel_color_stack_int=\count296
 \l__pdf_internal_box=\box108
 )
 (./RDB.aux)
 \openout1 = `RDB.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Info: Redefining \degres on input line 23.
-LaTeX Info: Redefining \dots on input line 23.
-LaTeX Info: Redefining \up on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Info: Redefining \degres on input line 24.
+LaTeX Info: Redefining \dots on input line 24.
+LaTeX Info: Redefining \up on input line 24.
 
 
 Package french.ldf Warning: OT1 encoding should not be used for French.
 (french.ldf)                Add \usepackage[T1]{fontenc} to the preamble
-(french.ldf)                of your document; reported on input line 23.
+(french.ldf)                of your document; reported on input line 24.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -676,16 +681,16 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count295
+\scratchcounter=\count297
 \scratchdimen=\dimen269
 \scratchbox=\box109
-\nofMPsegments=\count296
-\nofMParguments=\count297
+\nofMPsegments=\count298
+\nofMParguments=\count299
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count298
+\MPscratchCnt=\count300
 \MPscratchDim=\dimen270
-\MPnumerator=\count299
-\makeMPintoPDFobject=\count300
+\MPnumerator=\count301
+\makeMPintoPDFobject=\count302
 \everyMPtoPDFconversion=\toks33
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -698,7 +703,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box110
-Package hyperref Info: Link coloring OFF on input line 23.
+Package hyperref Info: Link coloring OFF on input line 24.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -709,20 +714,20 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count301
+\c@section@level=\count303
 )
-LaTeX Info: Redefining \ref on input line 23.
-LaTeX Info: Redefining \pageref on input line 23.
-LaTeX Info: Redefining \nameref on input line 23.
+LaTeX Info: Redefining \ref on input line 24.
+LaTeX Info: Redefining \pageref on input line 24.
+LaTeX Info: Redefining \nameref on input line 24.
 
 (./RDB.out) (./RDB.out)
 \@outlinefile=\write6
 \openout6 = `RDB.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 31.
+(Font)              <14.4> on input line 32.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 31.
+(Font)              <7> on input line 32.
  (./RDB.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 3.
@@ -741,22 +746,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 51--52
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--54
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--60
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
 
@@ -765,12 +775,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 72--73
 
  []
 
-
+[2]
 Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
-[2]
+
 Underfull \hbox (badness 10000) in paragraph at lines 76--77
 
  []
@@ -785,15 +795,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
-
- []
-
-<images/UML_OOP.png, id=84, 1044.90375pt x 773.89125pt>
+<images/UML_OOP.png, id=94, 1044.90375pt x 773.89125pt>
 File: images/UML_OOP.png Graphic file (type png)
 <use images/UML_OOP.png>
-Package pdftex.def Info: images/UML_OOP.png  used on input line 88.
+Package pdftex.def Info: images/UML_OOP.png  used on input line 86.
 (pdftex.def)             Requested size: 409.72125pt x 303.45776pt.
 [3 <./images/UML_OOP.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 103--104
@@ -805,7 +810,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--106
 
  []
 
-<images/walkthrough/entree.jpg, id=92, 476.53032pt x 264.99pt>
+<images/walkthrough/entree.jpg, id=102, 476.53032pt x 264.99pt>
 File: images/walkthrough/entree.jpg Graphic file (type jpg)
 <use images/walkthrough/entree.jpg>
 Package pdftex.def Info: images/walkthrough/entree.jpg  used on input line 109.
@@ -817,14 +822,11 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `)' on page 4 undefined on input line 114.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 114--115
 
  []
 
-<images/walkthrough/sign_in.png, id=93, 472.76625pt x 314.67563pt>
+<images/walkthrough/sign_in.png, id=104, 472.76625pt x 314.67563pt>
 File: images/walkthrough/sign_in.png Graphic file (type png)
 <use images/walkthrough/sign_in.png>
 Package pdftex.def Info: images/walkthrough/sign_in.png  used on input line 118
@@ -840,7 +842,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
 
-<images/walkthrough/doctor_main.png, id=94, 474.27188pt x 402.75468pt>
+<images/walkthrough/doctor_main.png, id=106, 474.27188pt x 402.75468pt>
 File: images/walkthrough/doctor_main.png Graphic file (type png)
 <use images/walkthrough/doctor_main.png>
 Package pdftex.def Info: images/walkthrough/doctor_main.png  used on input line
@@ -856,7 +858,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
-<images/walkthrough/doctor_patient_main.png, id=95, 529.22719pt x 402.00188pt>
+<images/walkthrough/doctor_patient_main.png, id=108, 529.22719pt x 402.00188pt>
+
 File: images/walkthrough/doctor_patient_main.png Graphic file (type png)
 <use images/walkthrough/doctor_patient_main.png>
 Package pdftex.def Info: images/walkthrough/doctor_patient_main.png  used on in
@@ -872,7 +875,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
-<images/walkthrough/doctor_patient_add.png, id=96, 525.46312pt x 561.59813pt>
+<images/walkthrough/doctor_patient_add.png, id=110, 525.46312pt x 561.59813pt>
 File: images/walkthrough/doctor_patient_add.png Graphic file (type png)
 <use images/walkthrough/doctor_patient_add.png>
 Package pdftex.def Info: images/walkthrough/doctor_patient_add.png  used on inp
@@ -890,7 +893,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 150--151
 
  []
 
-<images/walkthrough/doctor_patient_remove_err.png, id=101, 546.54187pt x 533.74
+<images/walkthrough/doctor_patient_remove_err.png, id=116, 546.54187pt x 533.74
 406pt>
 File: images/walkthrough/doctor_patient_remove_err.png Graphic file (type png)
 <use images/walkthrough/doctor_patient_remove_err.png>
@@ -902,42 +905,40 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 155.
 See the caption package documentation for explanation.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
-
- []
-
-<images/walkthrough/doctor_patient_searchid.png, id=102, 523.9575pt x 626.34pt>
+<images/walkthrough/doctor_patient_searchid.png, id=118, 523.9575pt x 626.34pt>
 
 File: images/walkthrough/doctor_patient_searchid.png Graphic file (type png)
 <use images/walkthrough/doctor_patient_searchid.png>
 Package pdftex.def Info: images/walkthrough/doctor_patient_searchid.png  used o
-n input line 163.
+n input line 162.
 (pdftex.def)             Requested size: 251.07481pt x 300.13324pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 164.
+(caption)                particular \caption on input line 163.
 See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
 
  []
 
-<images/walkthrough/patient_main.png, id=103, 530.73282pt x 395.97937pt>
+<images/walkthrough/patient_main.png, id=120, 530.73282pt x 395.97937pt>
 File: images/walkthrough/patient_main.png Graphic file (type png)
 <use images/walkthrough/patient_main.png>
 Package pdftex.def Info: images/walkthrough/patient_main.png  used on input lin
-e 172.
+e 171.
 (pdftex.def)             Requested size: 251.07481pt x 187.33084pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 173.
+(caption)                particular \caption on input line 172.
 See the caption package documentation for explanation.
 
-[5 <./images/walkthrough/doctor_patient_add.png (PNG copy)> <./images/walkthrou
-gh/doctor_patient_remove_err.png (PNG copy)> <./images/walkthrough/doctor_patie
-nt_searchid.png (PNG copy)>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 181--182
 
  []
@@ -947,94 +948,108 @@ Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
  []
 
-<images/structure.png, id=108, 1050.92625pt x 580.1675pt>
+[5 <./images/walkthrough/doctor_patient_add.png (PNG copy)> <./images/walkthrou
+gh/doctor_patient_remove_err.png (PNG copy)> <./images/walkthrough/doctor_patie
+nt_searchid.png (PNG copy)> <./images/walkthrough/patient_main.png (PNG copy)>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
+
+ []
+
+
+Underfull \hbox (badness 8132) in paragraph at lines 209--210
+\OT1/cmr/m/n/12 ini-tia-le-ment, no-tam-ment dans l'ar-chi-tec-ture
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
+
+ []
+
+<images/structure.png, id=129, 1050.92625pt x 580.1675pt>
 File: images/structure.png Graphic file (type png)
 <use images/structure.png>
-Package pdftex.def Info: images/structure.png  used on input line 191.
+Package pdftex.def Info: images/structure.png  used on input line 221.
 (pdftex.def)             Requested size: 358.50317pt x 197.90942pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 192.
+(caption)                particular \caption on input line 222.
 See the caption package documentation for explanation.
 
-[6 <./images/walkthrough/patient_main.png (PNG copy)> <./images/structure.png>]
 
-Underfull \hbox (badness 5203) in paragraph at lines 202--203
-\OT1/cmr/m/n/12 pen-dant ren-contr^^Se beau-coup de pos-si-bi-lit^^Ses
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
-
- []
+Package caption Warning: \captionsetup{subtype*=...} or \subcaptionof
+(caption)                outside box or environment on input line 223.
+See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
+Package caption Warning: \subcaption
+(caption)                outside box or environment on input line 223.
+See the caption package documentation for explanation.
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--207
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--213
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--215
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 218--219
-
- []
-
-[7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
+[7 <./images/structure.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 227.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 227.
  (./RDB.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 222.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 227.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 227.
 Package rerunfilecheck Info: File `RDB.out' has not changed.
-(rerunfilecheck)             Checksum: CD105BC215E79FBB768F49B867A082F4;421.
-
-
-LaTeX Warning: There were undefined references.
-
+(rerunfilecheck)             Checksum: 8F61E02B32BBFF29495760A27FE7754B;538.
  ) 
 Here is how much of TeX's memory you used:
- 18143 strings out of 483154
- 339844 string characters out of 5965024
- 607005 words of memory out of 5000000
- 32806 multiletter control sequences out of 15000+600000
- 538814 words of font info for 45 fonts, out of 8000000 for 9000
+ 18212 strings out of 483154
+ 340978 string characters out of 5965024
+ 603499 words of memory out of 5000000
+ 32871 multiletter control sequences out of 15000+600000
+ 539063 words of font info for 46 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 59i,8n,75p,866b,519s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on RDB.pdf (7 pages, 503520 bytes).
+ 59i,8n,75p,866b,666s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmti12.pfb>
+Output written on RDB.pdf (7 pages, 524523 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 123 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
- 127 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 176 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 143 words of extra memory for PDF output out of 10000 (max. 10000000)
 
