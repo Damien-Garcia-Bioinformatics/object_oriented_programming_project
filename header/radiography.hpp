@@ -1,3 +1,13 @@
+// Object Oriented Programming - TP Project
+// GARCIA Damien
+// ECHELARD Florian
+// M2BB
+
+// Object Oriented Programming - TP Project
+// GARCIA Damien
+// ECHELARD Florian
+// M2BB
+
 #ifndef __RADIOGRAPHY__
 #define __RADIOGRAPHY__
 

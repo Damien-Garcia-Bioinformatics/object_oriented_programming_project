@@ -1,3 +1,8 @@
+// Object Oriented Programming - TP Project
+// GARCIA Damien
+// ECHELARD Florian
+// M2BB
+
 #include "header/patient.hpp"
 #include "header/doctor.hpp"
 #include "header/radiography.hpp"

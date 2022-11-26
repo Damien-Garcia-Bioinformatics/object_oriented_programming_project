@@ -1,3 +1,8 @@
+// Object Oriented Programming - TP Project
+// GARCIA Damien
+// ECHELARD Florian
+// M2BB
+
 #ifndef __USER__
 #define __USER__
 

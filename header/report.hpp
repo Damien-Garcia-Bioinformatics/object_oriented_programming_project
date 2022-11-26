@@ -1,3 +1,8 @@
+// Object Oriented Programming - TP Project
+// GARCIA Damien
+// ECHELARD Florian
+// M2BB
+
 #ifndef __REPORT__
 #define __REPORT__
 
